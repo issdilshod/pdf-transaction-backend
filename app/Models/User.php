@@ -31,4 +31,14 @@ class User extends Model
         return $this->hasMany(UserAccessToken::class);
     }
 
+    /**
+     * Relation to Activity
+     * 
+     * @return Array(Activity)
+     */
+    public function activities(): HasMany
+    {
+        return $this->hasMany(Activity::class);
+    }
+
 }
