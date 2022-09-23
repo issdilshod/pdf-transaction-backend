@@ -42,8 +42,7 @@
                                 "required": [
                                     "username",
                                     "password",
-                                    "first_name",
-                                    "last_name"
+                                    "first_name"
                                 ],
                                 "properties": {
                                     "username": {
@@ -79,6 +78,9 @@
                     },
                     "404": {
                         "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
                     }
                 }
             }
