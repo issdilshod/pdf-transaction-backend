@@ -121,6 +121,201 @@
                 }
             }
         },
+        "/api/sender": {
+            "get": {
+                "tags": [
+                    "Sender"
+                ],
+                "summary": "Get senders",
+                "description": "Get senders",
+                "operationId": "get_senders",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Sender"
+                ],
+                "summary": "Create sender",
+                "description": "Create sender",
+                "operationId": "create_sender",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "it_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "it_id": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/sender/{id}": {
+            "get": {
+                "tags": [
+                    "Sender"
+                ],
+                "summary": "Get sender",
+                "description": "Get sender",
+                "operationId": "get_sender",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "sender id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Sender"
+                ],
+                "summary": "Update sender",
+                "description": "Update sender",
+                "operationId": "update_sender",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "sender id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "it_id": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Sender"
+                ],
+                "summary": "Delete sender",
+                "description": "Delete sender",
+                "operationId": "delete_sender",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "sender id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/user": {
             "get": {
                 "tags": [

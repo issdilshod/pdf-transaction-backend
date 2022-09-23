@@ -2,31 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Services\UserService;
+use App\Models\Sender;
+use App\Services\SenderService;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class SenderController extends Controller
 {
 
-    private $userService;
+    private $senderService;
 
-    /**
-     * First init of controller
-     * 
-     * @return void
-     */
     public function __construct()
     {
-        $this->userService = new UserService();
+        $this->senderService = new SenderService();
     }
 
     /**     @OA\GET(
-      *         path="/api/user",
-      *         operationId="get_users",
-      *         tags={"User"},
-      *         summary="Get users",
-      *         description="Get users",
+      *         path="/api/sender",
+      *         operationId="get_senders",
+      *         tags={"Sender"},
+      *         summary="Get senders",
+      *         description="Get senders",
       *             @OA\Response(response=200, description="Successfully"),
       *             @OA\Response(response=400, description="Bad request"),
       *             @OA\Response(response=401, description="Not Authorized"),
@@ -35,27 +30,25 @@ class UserController extends Controller
       */
     public function index()
     {
-        $users = $this->userService->get_users();
-        return $users;
+        $senders = $this->senderService->get_senders();
+        return $senders;
     }
 
     /**     @OA\POST(
-      *         path="/api/user",
-      *         operationId="create_user",
-      *         tags={"User"},
-      *         summary="Create user",
-      *         description="Create user",
+      *         path="/api/sender",
+      *         operationId="create_sender",
+      *         tags={"Sender"},
+      *         summary="Create sender",
+      *         description="Create sender",
       *             @OA\RequestBody(
       *                 @OA\JsonContent(),
       *                 @OA\MediaType(
       *                     mediaType="multipart/form-data",
       *                     @OA\Schema(
       *                         type="object",
-      *                         required={"username", "password", "first_name"},
-      *                         @OA\Property(property="username", type="text"),
-      *                         @OA\Property(property="password", type="text"),
-      *                         @OA\Property(property="first_name", type="text"),
-      *                         @OA\Property(property="last_name", type="text")
+      *                         required={"name", "it_id"},
+      *                         @OA\Property(property="name", type="text"),
+      *                         @OA\Property(property="it_id", type="text")
       *                     ),
       *                 ),
       *             ),
@@ -69,26 +62,24 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-            'first_name' => 'required',
-            'last_name' => ''
+            'name' => 'required',
+            'it_id' => 'required'
         ]);
 
-        $response = $this->userService->create_user($validated);
+        $response = $this->senderService->create_sender($validated);
         return $response;
     }
 
     /**     @OA\GET(
-      *         path="/api/user/{id}",
-      *         operationId="get_user",
-      *         tags={"User"},
-      *         summary="Get user",
-      *         description="Get user",
+      *         path="/api/sender/{id}",
+      *         operationId="get_sender",
+      *         tags={"Sender"},
+      *         summary="Get sender",
+      *         description="Get sender",
       *             @OA\Parameter(
       *                 name="id",
       *                 in="path",
-      *                 description="user id",
+      *                 description="sender id",
       *                 @OA\Schema(type="integer"),
       *                 required=true
       *             ),
@@ -98,22 +89,22 @@ class UserController extends Controller
       *             @OA\Response(response=404, description="Resource Not Found"),
       *     )
       */
-    public function show(User $user)
+    public function show(Sender $sender)
     {
-        $user = $this->userService->get_user($user);
-        return $user;
+        $sender = $this->senderService->get_sender($sender);
+        return $sender;
     }
 
     /**     @OA\PUT(
-      *         path="/api/user/{id}",
-      *         operationId="update_user",
-      *         tags={"User"},
-      *         summary="Update user",
-      *         description="Update user",
+      *         path="/api/sender/{id}",
+      *         operationId="update_sender",
+      *         tags={"Sender"},
+      *         summary="Update sender",
+      *         description="Update sender",
       *             @OA\Parameter(
       *                 name="id",
       *                 in="path",
-      *                 description="user id",
+      *                 description="sender id",
       *                 @OA\Schema(type="integer"),
       *                 required=true
       *             ),
@@ -124,10 +115,8 @@ class UserController extends Controller
       *                     @OA\Schema(
       *                         type="object",
       *                         required={},
-      *                         @OA\Property(property="username", type="text"),
-      *                         @OA\Property(property="password", type="text"),
-      *                         @OA\Property(property="first_name", type="text"),
-      *                         @OA\Property(property="last_name", type="text")
+      *                         @OA\Property(property="name", type="text"),
+      *                         @OA\Property(property="it_id", type="text")
       *                     ),
       *                 ),
       *             ),
@@ -137,29 +126,27 @@ class UserController extends Controller
       *             @OA\Response(response=404, description="Resource Not Found"),
       *     )
       */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Sender $sender)
     {
         $validated = $request->validate([
-            'username' => '',
-            'password' => '',
-            'first_name' => '',
-            'last_name' => ''
+            'name' => '',
+            'it_id' => ''
         ]);
 
-        $response = $this->userService->update_user($validated, $user);
+        $response = $this->senderService->update_sender($validated, $sender);
         return $response;
     }
 
     /**     @OA\DELETE(
-      *         path="/api/user/{id}",
-      *         operationId="delete_user",
-      *         tags={"User"},
-      *         summary="Delete user",
-      *         description="Delete user",
+      *         path="/api/sender/{id}",
+      *         operationId="delete_sender",
+      *         tags={"Sender"},
+      *         summary="Delete sender",
+      *         description="Delete sender",
       *             @OA\Parameter(
       *                 name="id",
       *                 in="path",
-      *                 description="user id",
+      *                 description="sender id",
       *                 @OA\Schema(type="integer"),
       *                 required=true
       *             ),
@@ -169,8 +156,8 @@ class UserController extends Controller
       *             @OA\Response(response=404, description="Resource Not Found"),
       *     )
       */
-    public function destroy(User $user)
+    public function destroy(Sender $sender)
     {
-        $this->userService->delete_user($user);
+        $this->senderService->delete_sender($sender);
     }
 }
