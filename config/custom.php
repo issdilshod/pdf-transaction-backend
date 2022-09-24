@@ -10,4 +10,10 @@ return [
         'admin' => 1,
         'user' => 2,
     ],
+
+    'address' => [
+        'type' => [
+            'company' => 1,
+        ]
+    ]
 ];

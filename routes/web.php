@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SenderController;
 use App\Http\Controllers\StateController;
@@ -20,6 +21,9 @@ Route::middleware('custom')->group(function() {
     Route::get('api/customer/search/{search}', [CustomerController::class, 'search']);
 
     Route::get('api/state', [StateController::class, 'index']);
+
+    Route::resource('api/company', CompanyController::class);
+    Route::get('api/company/search/{search}', [CompanyController::class, 'search']);
 });
 
 Route::post('api/login', [AccountController::class, 'login']);

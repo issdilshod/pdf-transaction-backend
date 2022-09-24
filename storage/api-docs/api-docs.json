@@ -121,6 +121,271 @@
                 }
             }
         },
+        "/api/company": {
+            "get": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Get companies",
+                "description": "Get companies",
+                "operationId": "get_companaies",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Create company",
+                "description": "Create company",
+                "operationId": "create_company",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "address[address_line1]",
+                                    "address[address_line2]",
+                                    "address[state_id]",
+                                    "address[city]",
+                                    "address[postal]"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "address[address_line1]": {
+                                        "type": "text"
+                                    },
+                                    "address[address_line2]": {
+                                        "type": "text"
+                                    },
+                                    "address[state_id]": {
+                                        "type": "text"
+                                    },
+                                    "address[city]": {
+                                        "type": "text"
+                                    },
+                                    "address[postal]": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/company/{id}": {
+            "get": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Get company",
+                "description": "Get company",
+                "operationId": "get_company",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "company id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Update company",
+                "description": "Update company",
+                "operationId": "update_company",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "company id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "address[address_line1]",
+                                    "address[address_line2]",
+                                    "address[state_id]",
+                                    "address[city]",
+                                    "address[postal]"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "address[address_line1]": {
+                                        "type": "text"
+                                    },
+                                    "address[address_line2]": {
+                                        "type": "text"
+                                    },
+                                    "address[state_id]": {
+                                        "type": "text"
+                                    },
+                                    "address[city]": {
+                                        "type": "text"
+                                    },
+                                    "address[postal]": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Delete company",
+                "description": "Delete company",
+                "operationId": "delete_company",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "company id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/company/search/{search}": {
+            "get": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Search company",
+                "description": "Search company",
+                "operationId": "search_company",
+                "parameters": [
+                    {
+                        "name": "search_val",
+                        "in": "path",
+                        "description": "company search val",
+                        "required": true,
+                        "schema": {
+                            "type": "text"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/customer": {
             "get": {
                 "tags": [
