@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\SenderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,9 @@ Route::post('api/customer', [CustomerController::class, 'store']);
 Route::get('api/customer/{id}', [CustomerController::class, 'show']);
 Route::put('api/customer/{id}', [CustomerController::class, 'update']);
 Route::delete('api/customer/{id}', [CustomerController::class, 'destroy']);
+
+Route::get('api/organization', [OrganizationController::class, 'index']);
+Route::post('api/organization', [OrganizationController::class, 'store']);
+Route::get('api/organization/{id}', [OrganizationController::class, 'show']);
+Route::put('api/organization/{id}', [OrganizationController::class, 'update']);
+Route::delete('api/organization/{id}', [OrganizationController::class, 'destroy']);

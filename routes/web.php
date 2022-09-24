@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\SenderController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
@@ -24,6 +25,8 @@ Route::middleware('custom')->group(function() {
 
     Route::resource('api/company', CompanyController::class);
     Route::get('api/company/search/{search}', [CompanyController::class, 'search']);
+
+    Route::resource('api/organization', OrganizationController::class);
 });
 
 Route::post('api/login', [AccountController::class, 'login']);
