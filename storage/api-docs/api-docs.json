@@ -574,6 +574,30 @@
                 }
             }
         },
+        "/api/state": {
+            "get": {
+                "tags": [
+                    "Helper"
+                ],
+                "summary": "Get states",
+                "description": "Get states",
+                "operationId": "get_states",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/user": {
             "get": {
                 "tags": [
