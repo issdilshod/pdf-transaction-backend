@@ -797,6 +797,201 @@
                 }
             }
         },
+        "/api/range": {
+            "get": {
+                "tags": [
+                    "Range"
+                ],
+                "summary": "Get ranges",
+                "description": "Get ranges",
+                "operationId": "get_ranges",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Range"
+                ],
+                "summary": "Create range",
+                "description": "Create range",
+                "operationId": "create_range",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "start",
+                                    "end"
+                                ],
+                                "properties": {
+                                    "start": {
+                                        "type": "text"
+                                    },
+                                    "end": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/range/{id}": {
+            "get": {
+                "tags": [
+                    "Range"
+                ],
+                "summary": "Get range",
+                "description": "Get range",
+                "operationId": "get_range",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "range id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Range"
+                ],
+                "summary": "Update range",
+                "description": "Update range",
+                "operationId": "update_range",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "range id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "start": {
+                                        "type": "text"
+                                    },
+                                    "end": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Range"
+                ],
+                "summary": "Delete range",
+                "description": "Delete range",
+                "operationId": "delete_range",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "range id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/sender": {
             "get": {
                 "tags": [

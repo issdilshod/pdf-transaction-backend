@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\RangeController;
 use App\Http\Controllers\SenderController;
 use App\Http\Controllers\TransactionTypeController;
 use App\Http\Controllers\UserController;
@@ -36,3 +37,9 @@ Route::post('api/transaction-type', [TransactionTypeController::class, 'store'])
 Route::get('api/transaction-type/{id}', [TransactionTypeController::class, 'show']);
 Route::put('api/transaction-type/{id}', [TransactionTypeController::class, 'update']);
 Route::delete('api/transaction-type/{id}', [TransactionTypeController::class, 'destroy']);
+
+Route::get('api/range', [RangeController::class, 'index']);
+Route::post('api/range', [RangeController::class, 'store']);
+Route::get('api/range/{id}', [RangeController::class, 'show']);
+Route::put('api/range/{id}', [RangeController::class, 'update']);
+Route::delete('api/range/{id}', [RangeController::class, 'destroy']);
