@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SenderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,9 @@ Route::middleware('custom')->group(function() {
 
     Route::resource('api/sender', SenderController::class);
     Route::get('api/sender/search/{search}', [SenderController::class, 'search']);
+
+    Route::resource('api/customer', CustomerController::class);
+    Route::get('api/customer/search/{search}', [CustomerController::class, 'search']);
 });
 
 Route::post('api/login', [AccountController::class, 'login']);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SenderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -15,3 +16,9 @@ Route::post('api/sender', [SenderController::class, 'store']);
 Route::get('api/sender/{id}', [SenderController::class, 'show']);
 Route::put('api/sender/{id}', [SenderController::class, 'update']);
 Route::delete('api/sender/{id}', [SenderController::class, 'destroy']);
+
+Route::get('api/customer', [CustomerController::class, 'index']);
+Route::post('api/customer', [CustomerController::class, 'store']);
+Route::get('api/customer/{id}', [CustomerController::class, 'show']);
+Route::put('api/customer/{id}', [CustomerController::class, 'update']);
+Route::delete('api/customer/{id}', [CustomerController::class, 'destroy']);
