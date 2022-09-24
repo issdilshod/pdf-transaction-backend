@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\SenderController;
+use App\Http\Controllers\TransactionTypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,9 @@ Route::post('api/organization', [OrganizationController::class, 'store']);
 Route::get('api/organization/{id}', [OrganizationController::class, 'show']);
 Route::put('api/organization/{id}', [OrganizationController::class, 'update']);
 Route::delete('api/organization/{id}', [OrganizationController::class, 'destroy']);
+
+Route::get('api/transaction-type', [TransactionTypeController::class, 'index']);
+Route::post('api/transaction-type', [TransactionTypeController::class, 'store']);
+Route::get('api/transaction-type/{id}', [TransactionTypeController::class, 'show']);
+Route::put('api/transaction-type/{id}', [TransactionTypeController::class, 'update']);
+Route::delete('api/transaction-type/{id}', [TransactionTypeController::class, 'destroy']);

@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\SenderController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\TransactionTypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::middleware('custom')->group(function() {
     Route::get('api/company/search/{search}', [CompanyController::class, 'search']);
 
     Route::resource('api/organization', OrganizationController::class);
+
+    Route::resource('api/transaction-type', TransactionTypeController::class);
 });
 
 Route::post('api/login', [AccountController::class, 'login']);
