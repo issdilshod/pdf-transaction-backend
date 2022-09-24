@@ -316,6 +316,41 @@
                 }
             }
         },
+        "/api/sender/search/{search}": {
+            "get": {
+                "tags": [
+                    "Sender"
+                ],
+                "summary": "Search sender",
+                "description": "Search sender",
+                "operationId": "search_sender",
+                "parameters": [
+                    {
+                        "name": "search_val",
+                        "in": "path",
+                        "description": "sender search val",
+                        "required": true,
+                        "schema": {
+                            "type": "text"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/user": {
             "get": {
                 "tags": [

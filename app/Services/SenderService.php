@@ -55,4 +55,13 @@ class SenderService {
     {
         $sender->update(['status' => Config::get('custom.status.delete')]);
     }
+
+    public function search_sender($search)
+    {
+        $senders = Sender::orderBy('created_at', 'DESC')
+                            ->where('status', Config::get('custom.status.active'))
+                            ->where('name', 'LIKE', '%' . $search . '%')
+                            ->get();
+        return SenderResource::collection($senders);
+    }
 }

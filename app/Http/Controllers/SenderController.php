@@ -160,4 +160,29 @@ class SenderController extends Controller
     {
         $this->senderService->delete_sender($sender);
     }
+
+    /**     @OA\GET(
+      *         path="/api/sender/search/{search}",
+      *         operationId="search_sender",
+      *         tags={"Sender"},
+      *         summary="Search sender",
+      *         description="Search sender",
+      *             @OA\Parameter(
+      *                 name="search_val",
+      *                 in="path",
+      *                 description="sender search val",
+      *                 @OA\Schema(type="text"),
+      *                 required=true
+      *             ),
+      *             @OA\Response(response=200, description="Successfully"),
+      *             @OA\Response(response=400, description="Bad request"),
+      *             @OA\Response(response=401, description="Not Authorized"),
+      *             @OA\Response(response=404, description="Resource Not Found"),
+      *     )
+      */
+    public function search($search)
+    {
+        $senders = $this->senderService->search_sender($search);
+        return $senders;
+    }
 }

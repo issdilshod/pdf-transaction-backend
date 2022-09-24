@@ -12,6 +12,7 @@ Route::middleware('custom')->group(function() {
     Route::get('api/is_auth', [AccountController::class, 'is_auth']);
 
     Route::resource('api/sender', SenderController::class);
+    Route::get('api/sender/search/{search}', [SenderController::class, 'search']);
 });
 
 Route::post('api/login', [AccountController::class, 'login']);
