@@ -1443,10 +1443,210 @@
                 }
             }
         },
+        "/api/transaction-page": {
+            "get": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Get transaction pages",
+                "description": "Get transaction pages",
+                "operationId": "get_transactionPages",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Create transaction page",
+                "description": "Create transaction page",
+                "operationId": "create_transactionPage",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "page"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "integer"
+                                    },
+                                    "start_offset": {
+                                        "type": "text"
+                                    },
+                                    "end_offset": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/transaction-page/{id}": {
+            "get": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Get transaction page",
+                "description": "Get transaction page",
+                "operationId": "get_transactionPage",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "transaction page id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Update transaction page",
+                "description": "Update transaction page",
+                "operationId": "update_transactionPage",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "transaction page id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "page": {
+                                        "type": "text"
+                                    },
+                                    "start_offset": {
+                                        "type": "text"
+                                    },
+                                    "end_offset": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Delete transaction page",
+                "description": "Delete transaction page",
+                "operationId": "delete_transactionPage",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "transaction page id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/transaction-type": {
             "get": {
                 "tags": [
-                    "Transaction Type"
+                    "Transaction"
                 ],
                 "summary": "Get transaction types",
                 "description": "Get transaction types",
@@ -1468,7 +1668,7 @@
             },
             "post": {
                 "tags": [
-                    "Transaction Type"
+                    "Transaction"
                 ],
                 "summary": "Create transaction type",
                 "description": "Create transaction type",
@@ -1515,7 +1715,7 @@
         "/api/transaction-type/{id}": {
             "get": {
                 "tags": [
-                    "Transaction Type"
+                    "Transaction"
                 ],
                 "summary": "Get transaction type",
                 "description": "Get transaction type",
@@ -1548,7 +1748,7 @@
             },
             "put": {
                 "tags": [
-                    "Transaction Type"
+                    "Transaction"
                 ],
                 "summary": "Update transaction type",
                 "description": "Update transaction type",
@@ -1599,7 +1799,7 @@
             },
             "delete": {
                 "tags": [
-                    "Transaction Type"
+                    "Transaction"
                 ],
                 "summary": "Delete transaction type",
                 "description": "Delete transaction type",

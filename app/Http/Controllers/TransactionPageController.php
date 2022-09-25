@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TransactionType;
-use App\Services\TransactionTypeService;
+use App\Models\TransactionPage;
+use App\Services\TransactionPageService;
 use Illuminate\Http\Request;
 
-class TransactionTypeController extends Controller
+class TransactionPageController extends Controller
 {
-    private $transactionTypeService;
+    private $transactionPageService;
 
     public  function __construct()
     {
-        $this->transactionTypeService = new TransactionTypeService();
+        $this->transactionPageService = new TransactionPageService();
     }
 
     /**     @OA\GET(
-      *         path="/api/transaction-type",
-      *         operationId="get_transactionTypes",
+      *         path="/api/transaction-page",
+      *         operationId="get_transactionPages",
       *         tags={"Transaction"},
-      *         summary="Get transaction types",
-      *         description="Get transaction types",
+      *         summary="Get transaction pages",
+      *         description="Get transaction pages",
       *             @OA\Response(response=200, description="Successfully"),
       *             @OA\Response(response=400, description="Bad request"),
       *             @OA\Response(response=401, description="Not Authorized"),
@@ -29,24 +29,26 @@ class TransactionTypeController extends Controller
       */
     public function index()
     {
-        $transactionTypes = $this->transactionTypeService->get_transactionTypes();
-        return $transactionTypes;
+        $transactionPages = $this->transactionPageService->get_transactionPages();
+        return $transactionPages;
     }
 
     /**     @OA\POST(
-      *         path="/api/transaction-type",
-      *         operationId="create_transactionType",
+      *         path="/api/transaction-page",
+      *         operationId="create_transactionPage",
       *         tags={"Transaction"},
-      *         summary="Create transaction type",
-      *         description="Create transaction type",
+      *         summary="Create transaction page",
+      *         description="Create transaction page",
       *             @OA\RequestBody(
       *                 @OA\JsonContent(),
       *                 @OA\MediaType(
       *                     mediaType="multipart/form-data",
       *                     @OA\Schema(
       *                         type="object",
-      *                         required={"name"},
-      *                         @OA\Property(property="name", type="text")
+      *                         required={"page"},
+      *                         @OA\Property(property="name", type="integer"),
+      *                         @OA\Property(property="start_offset", type="text"),
+      *                         @OA\Property(property="end_offset", type="text"),
       *                     ),
       *                 ),
       *             ),
@@ -60,23 +62,25 @@ class TransactionTypeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required'
+            'page' => 'required',
+            'start_offset' => '',
+            'end_offset' => ''
         ]);
 
-        $response = $this->transactionTypeService->create_transactionType($validated);
+        $response = $this->transactionPageService->create_transactionPage($validated);
         return $response;
     }
 
     /**     @OA\GET(
-      *         path="/api/transaction-type/{id}",
-      *         operationId="get_transactionType",
+      *         path="/api/transaction-page/{id}",
+      *         operationId="get_transactionPage",
       *         tags={"Transaction"},
-      *         summary="Get transaction type",
-      *         description="Get transaction type",
+      *         summary="Get transaction page",
+      *         description="Get transaction page",
       *             @OA\Parameter(
       *                 name="id",
       *                 in="path",
-      *                 description="transaction type id",
+      *                 description="transaction page id",
       *                 @OA\Schema(type="integer"),
       *                 required=true
       *             ),
@@ -86,22 +90,22 @@ class TransactionTypeController extends Controller
       *             @OA\Response(response=404, description="Resource Not Found"),
       *     )
       */
-    public function show(TransactionType $transactionType)
+    public function show(TransactionPage $transactionPage)
     {
-        $transactionType = $this->transactionTypeService->get_transactionType($transactionType);
-        return $transactionType;
+        $transactionPage = $this->transactionPageService->get_transactionPage($transactionPage);
+        return $transactionPage;
     }
 
     /**     @OA\PUT(
-      *         path="/api/transaction-type/{id}",
-      *         operationId="update_transactionType",
+      *         path="/api/transaction-page/{id}",
+      *         operationId="update_transactionPage",
       *         tags={"Transaction"},
-      *         summary="Update transaction type",
-      *         description="Update transaction type",
+      *         summary="Update transaction page",
+      *         description="Update transaction page",
       *             @OA\Parameter(
       *                 name="id",
       *                 in="path",
-      *                 description="transaction type id",
+      *                 description="transaction page id",
       *                 @OA\Schema(type="integer"),
       *                 required=true
       *             ),
@@ -112,7 +116,9 @@ class TransactionTypeController extends Controller
       *                     @OA\Schema(
       *                         type="object",
       *                         required={},
-      *                         @OA\Property(property="name", type="text")
+      *                         @OA\Property(property="page", type="text"),
+      *                         @OA\Property(property="start_offset", type="text"),
+      *                         @OA\Property(property="end_offset", type="text"),
       *                     ),
       *                 ),
       *             ),
@@ -122,26 +128,28 @@ class TransactionTypeController extends Controller
       *             @OA\Response(response=404, description="Resource Not Found"),
       *     )
       */
-    public function update(Request $request, TransactionType $transactionType)
+    public function update(Request $request, TransactionPage $transactionPage)
     {
         $validated = $request->validate([
-            'name' => ''
+            'page' => '',
+            'start_offset' => '',
+            'end_offset' => ''
         ]);
 
-        $response = $this->transactionTypeService->update_transactionType($validated, $transactionType);
+        $response = $this->transactionPageService->update_transactionPage($validated, $transactionPage);
         return $response;
     }
 
     /**     @OA\DELETE(
-      *         path="/api/transaction-type/{id}",
-      *         operationId="delete_transactionType",
+      *         path="/api/transaction-page/{id}",
+      *         operationId="delete_transactionPage",
       *         tags={"Transaction"},
-      *         summary="Delete transaction type",
-      *         description="Delete transaction type",
+      *         summary="Delete transaction page",
+      *         description="Delete transaction page",
       *             @OA\Parameter(
       *                 name="id",
       *                 in="path",
-      *                 description="transaction type id",
+      *                 description="transaction page id",
       *                 @OA\Schema(type="integer"),
       *                 required=true
       *             ),
@@ -151,8 +159,8 @@ class TransactionTypeController extends Controller
       *             @OA\Response(response=404, description="Resource Not Found"),
       *     )
       */
-    public function destroy(TransactionType $transactionType)
+    public function destroy(TransactionPage $transactionPage)
     {
-        $this->transactionTypeService->delete_transactionType($transactionType);
+        $this->transactionPageService->delete_transactionPage($transactionPage);
     }
 }

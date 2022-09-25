@@ -5,6 +5,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\RangeController;
 use App\Http\Controllers\SenderController;
+use App\Http\Controllers\TransactionPageController;
 use App\Http\Controllers\TransactionTypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -50,3 +51,9 @@ Route::post('api/holiday', [HolidayController::class, 'store']);
 Route::get('api/holiday/{id}', [HolidayController::class, 'show']);
 Route::put('api/holiday/{id}', [HolidayController::class, 'update']);
 Route::delete('api/holiday/{id}', [HolidayController::class, 'destroy']);
+
+Route::get('api/transaction-page', [TransactionPageController::class, 'index']);
+Route::post('api/transaction-page', [TransactionPageController::class, 'store']);
+Route::get('api/transaction-page/{id}', [TransactionPageController::class, 'show']);
+Route::put('api/transaction-page/{id}', [TransactionPageController::class, 'update']);
+Route::delete('api/transaction-page/{id}', [TransactionPageController::class, 'destroy']);
