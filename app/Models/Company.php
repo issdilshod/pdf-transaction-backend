@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
+use Illuminate\Support\Facades\Config;
 
 class Company extends Model
 {
@@ -24,6 +25,7 @@ class Company extends Model
      */
     public function address(): HasOneOrMany
     {
-        return $this->hasMany(Address::class, 'related_id', 'id');
+        return $this->hasMany(Address::class, 'related_id', 'id')
+                        ->where('status', Config::get('custom.status.active'));
     }
 }

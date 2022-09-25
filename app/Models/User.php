@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Config;
 
 class User extends Model
 {
@@ -28,7 +29,8 @@ class User extends Model
      */
     public function user_access_tokens(): HasMany
     {
-        return $this->hasMany(UserAccessToken::class);
+        return $this->hasMany(UserAccessToken::class)
+                        ->where('status', Config::get('custom.status.active'));
     }
 
     /**
@@ -38,7 +40,8 @@ class User extends Model
      */
     public function activities(): HasMany
     {
-        return $this->hasMany(Activity::class);
+        return $this->hasMany(Activity::class)
+                        ->where('status', Config::get('custom.status.active'));
     }
 
 }
