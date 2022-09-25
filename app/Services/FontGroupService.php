@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Config;
 
 class FontGroupService {
 
+    private $fontService;
+
+    public function __construct()
+    {
+        $this->fontService = new FontService();
+    }
+
     public function get_fontGroups()
     {
         $fontGroups = FontGroup::orderBy('created_at', 'DESC')
@@ -29,6 +36,13 @@ class FontGroupService {
                                 ->first();
         if ($exsist==null){
             $created = FontGroup::create($fontGroup);
+            // create fonts if exsist
+            if (isset($fontGroup['font'])){
+                foreach($fontGroup['font'] AS $key => $value):
+                    $value['font_group_id'] = $created->id;
+                    $font = $this->fontService->create_font($value);
+                endforeach;
+            }
             return new FontGroupResource($created);
         }
         return response()->json([
@@ -44,6 +58,19 @@ class FontGroupService {
                             ->first();
         if ($exsist==null){
             $fontGroup->update($update);
+            // create/update fonts if exsist
+            if (isset($update['font'])){
+                foreach($update['font'] AS $key => $value):
+                    $value['font_group_id'] = $fontGroup->id;
+                    $font = $this->fontService->update_font($value);
+                endforeach;
+            }
+            // delete fonts if exsist
+            if (isset($update['font_to_delete'])){
+                foreach($update['font_to_delete'] AS $key => $value):
+                    $this->fontService->delete_font($value);
+                endforeach;
+            }
             return new FontGroupResource($fontGroup);
         }
         return response()->json([

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FontGroupResource extends JsonResource
+class FontResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,9 @@ class FontGroupResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'fonts' => FontResource::collection($this->fonts)
+            'ascii' => $this->ascii,
+            'unicode' => $this->unicode,
+            'hex' => $this->hex
         ];
     }
 }

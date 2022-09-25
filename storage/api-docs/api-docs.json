@@ -649,6 +649,15 @@
                                 "properties": {
                                     "name": {
                                         "type": "text"
+                                    },
+                                    "font[][ascii]": {
+                                        "type": "text"
+                                    },
+                                    "font[][unicode]": {
+                                        "type": "text"
+                                    },
+                                    "font[][hex]": {
+                                        "type": "text"
                                     }
                                 },
                                 "type": "object"
@@ -737,6 +746,18 @@
                                 "required": [],
                                 "properties": {
                                     "name": {
+                                        "type": "text"
+                                    },
+                                    "font[][ascii]": {
+                                        "type": "text"
+                                    },
+                                    "font[][unicode]": {
+                                        "type": "text"
+                                    },
+                                    "font[][hex]": {
+                                        "type": "text"
+                                    },
+                                    "font_to_delete[]": {
                                         "type": "text"
                                     }
                                 },
