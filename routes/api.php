@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\FontGroupController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\RangeController;
@@ -57,3 +58,9 @@ Route::post('api/transaction-page', [TransactionPageController::class, 'store'])
 Route::get('api/transaction-page/{id}', [TransactionPageController::class, 'show']);
 Route::put('api/transaction-page/{id}', [TransactionPageController::class, 'update']);
 Route::delete('api/transaction-page/{id}', [TransactionPageController::class, 'destroy']);
+
+Route::get('api/font-group', [FontGroupController::class, 'index']);
+Route::post('api/font-group', [FontGroupController::class, 'store']);
+Route::get('api/font-group/{id}', [FontGroupController::class, 'show']);
+Route::put('api/font-group/{id}', [FontGroupController::class, 'update']);
+Route::delete('api/font-group/{id}', [FontGroupController::class, 'destroy']);
