@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\RangeController;
 use App\Http\Controllers\SenderController;
@@ -33,6 +34,8 @@ Route::middleware('custom')->group(function() {
     Route::resource('api/transaction-type', TransactionTypeController::class);
 
     Route::resource('api/range', RangeController::class);
+
+    Route::resource('api/holiday', HolidayController::class);
 });
 
 Route::post('api/login', [AccountController::class, 'login']);

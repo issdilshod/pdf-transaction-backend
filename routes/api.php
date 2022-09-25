@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\RangeController;
 use App\Http\Controllers\SenderController;
@@ -43,3 +44,9 @@ Route::post('api/range', [RangeController::class, 'store']);
 Route::get('api/range/{id}', [RangeController::class, 'show']);
 Route::put('api/range/{id}', [RangeController::class, 'update']);
 Route::delete('api/range/{id}', [RangeController::class, 'destroy']);
+
+Route::get('api/holiday', [HolidayController::class, 'index']);
+Route::post('api/holiday', [HolidayController::class, 'store']);
+Route::get('api/holiday/{id}', [HolidayController::class, 'show']);
+Route::put('api/holiday/{id}', [HolidayController::class, 'update']);
+Route::delete('api/holiday/{id}', [HolidayController::class, 'destroy']);
