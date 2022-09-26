@@ -2075,6 +2075,208 @@
                 }
             }
         },
+        "/api/statement": {
+            "get": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Get statements",
+                "description": "Get statements",
+                "operationId": "get_statements",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Create statement",
+                "description": "Create statement",
+                "operationId": "create_statement",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "company_id",
+                                    "organization_id",
+                                    "name"
+                                ],
+                                "properties": {
+                                    "company_id": {
+                                        "type": "integer"
+                                    },
+                                    "organization_id": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/statement/{id}": {
+            "get": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Get statement",
+                "description": "Get statement",
+                "operationId": "get_statement",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "statement id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Update statement",
+                "description": "Update statement",
+                "operationId": "update_statement",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "statement id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "company_id": {
+                                        "type": "integer"
+                                    },
+                                    "organization_id": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Delete statement",
+                "description": "Delete statement",
+                "operationId": "delete_statement",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "statement id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/transaction-category": {
             "get": {
                 "tags": [

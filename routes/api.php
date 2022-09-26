@@ -12,6 +12,7 @@ use App\Http\Controllers\Transactions\TransactionCategoryController;
 use App\Http\Controllers\Transactions\TransactionPageController;
 use App\Http\Controllers\Transactions\TransactionTypeController;
 use App\Http\Controllers\Account\UserController;
+use App\Http\Controllers\Statements\StatementController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('api/user', [UserController::class, 'index']);
@@ -85,3 +86,9 @@ Route::post('api/transaction-category', [TransactionCategoryController::class, '
 Route::get('api/transaction-category/{id}', [TransactionCategoryController::class, 'show']);
 Route::put('api/transaction-category/{id}', [TransactionCategoryController::class, 'update']);
 Route::delete('api/transaction-category/{id}', [TransactionCategoryController::class, 'destroy']);
+
+Route::get('api/statement', [StatementController::class, 'index']);
+Route::post('api/statement', [StatementController::class, 'store']);
+Route::get('api/statement/{id}', [StatementController::class, 'show']);
+Route::put('api/statement/{id}', [StatementController::class, 'update']);
+Route::delete('api/statement/{id}', [StatementController::class, 'destroy']);
