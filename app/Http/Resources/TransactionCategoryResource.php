@@ -22,6 +22,7 @@ class TransactionCategoryResource extends JsonResource
             'customer' => $this->customer,
             'sender' => $this->sender,
             'transaction_type_id' => $this->transaction_type_id,
+            'descriptions' => TransactionCategoryToDescriptionResource::collection($this->descriptions)
         ];
     }
 }
