@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
 use Illuminate\Support\Facades\Config;
 
-class DescriptionRule extends Model
+class Description extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'type',
-        'value',
+        'name',
+        'description',
+        'split',
         'status'
     ];
 
@@ -24,9 +25,10 @@ class DescriptionRule extends Model
      * 
      * @return Array(DescriptionToDescriptionRule)
      */
-    public function description(): HasOneOrMany
+    public function description_rules(): HasOneOrMany
     {
-        return $this->hasMany(DescriptionToDescriptionRule::class, 'description_rule_id')
+        return $this->hasMany(DescriptionToDescriptionRule::class, 'description_id')
                         ->where('status', Config::get('custom.status.active'));
     }
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DescriptionController;
 use App\Http\Controllers\FontGroupController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\OrganizationController;
@@ -64,3 +65,9 @@ Route::post('api/font-group', [FontGroupController::class, 'store']);
 Route::get('api/font-group/{id}', [FontGroupController::class, 'show']);
 Route::put('api/font-group/{id}', [FontGroupController::class, 'update']);
 Route::delete('api/font-group/{id}', [FontGroupController::class, 'destroy']);
+
+Route::get('api/description', [DescriptionController::class, 'index']);
+Route::post('api/description', [DescriptionController::class, 'store']);
+Route::get('api/description/{id}', [DescriptionController::class, 'show']);
+Route::put('api/description/{id}', [DescriptionController::class, 'update']);
+Route::delete('api/description/{id}', [DescriptionController::class, 'destroy']);

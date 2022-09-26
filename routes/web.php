@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DescriptionController;
 use App\Http\Controllers\FontGroupController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\OrganizationController;
@@ -42,6 +43,8 @@ Route::middleware('custom')->group(function() {
     Route::resource('api/transaction-page', TransactionPageController::class);
 
     Route::resource('api/font-group', FontGroupController::class);
+
+    Route::resource('api/description', DescriptionController::class);
 });
 
 Route::post('api/login', [AccountController::class, 'login']);

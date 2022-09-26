@@ -116,10 +116,6 @@ class DescriptionRuleSeeder extends Seeder
                     'value' => 'FULLYEAR/MONTH/DAY', 
                 ],
                 [ 
-                    'type' => Config::get('custom.descriptionRules.fullYear_month_day'),
-                    'value' => 'FULLYEAR/MONTH/DAY', 
-                ],
-                [ 
                     'type' => Config::get('custom.descriptionRules.value'),
                     'value' => 'CUSTOMER', 
                 ],

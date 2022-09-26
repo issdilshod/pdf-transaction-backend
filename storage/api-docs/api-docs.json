@@ -609,6 +609,221 @@
                 }
             }
         },
+        "/api/description": {
+            "get": {
+                "tags": [
+                    "Description"
+                ],
+                "summary": "Get descriptions",
+                "description": "Get descriptions",
+                "operationId": "get_descriptions",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Description"
+                ],
+                "summary": "Create description",
+                "description": "Create description",
+                "operationId": "create_description",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "description": {
+                                        "type": "text"
+                                    },
+                                    "split": {
+                                        "type": "text"
+                                    },
+                                    "rules[][id]": {
+                                        "type": "text"
+                                    },
+                                    "rules[][value]": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/description/{id}": {
+            "get": {
+                "tags": [
+                    "Description"
+                ],
+                "summary": "Get description",
+                "description": "Get description",
+                "operationId": "get_description",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "description id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Description"
+                ],
+                "summary": "Update description",
+                "description": "Update description",
+                "operationId": "update_description",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "description id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "description": {
+                                        "type": "text"
+                                    },
+                                    "split": {
+                                        "type": "integer"
+                                    },
+                                    "rules[][id]": {
+                                        "type": "text"
+                                    },
+                                    "rules[][value]": {
+                                        "type": "text"
+                                    },
+                                    "rules_to_delete[]": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Description"
+                ],
+                "summary": "Delete description",
+                "description": "Delete description",
+                "operationId": "delete_description",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "font description",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/font-group": {
             "get": {
                 "tags": [
