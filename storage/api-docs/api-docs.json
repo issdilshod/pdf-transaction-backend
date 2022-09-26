@@ -121,10 +121,1058 @@
                 }
             }
         },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Get users",
+                "description": "Get users",
+                "operationId": "get_users",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Create user",
+                "description": "Create user",
+                "operationId": "create_user",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "password",
+                                    "first_name"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "type": "text"
+                                    },
+                                    "password": {
+                                        "type": "text"
+                                    },
+                                    "first_name": {
+                                        "type": "text"
+                                    },
+                                    "last_name": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/user/{id}": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Get user",
+                "description": "Get user",
+                "operationId": "get_user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Update user",
+                "description": "Update user",
+                "operationId": "update_user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "username": {
+                                        "type": "text"
+                                    },
+                                    "password": {
+                                        "type": "text"
+                                    },
+                                    "first_name": {
+                                        "type": "text"
+                                    },
+                                    "last_name": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Delete user",
+                "description": "Delete user",
+                "operationId": "delete_user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/description": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get descriptions",
+                "description": "Get descriptions",
+                "operationId": "get_descriptions",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Create description",
+                "description": "Create description",
+                "operationId": "create_description",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "description": {
+                                        "type": "text"
+                                    },
+                                    "split": {
+                                        "type": "text"
+                                    },
+                                    "rules[][id]": {
+                                        "type": "text"
+                                    },
+                                    "rules[][value]": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/description/{id}": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get description",
+                "description": "Get description",
+                "operationId": "get_description",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "description id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Update description",
+                "description": "Update description",
+                "operationId": "update_description",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "description id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "description": {
+                                        "type": "text"
+                                    },
+                                    "split": {
+                                        "type": "integer"
+                                    },
+                                    "rules[][id]": {
+                                        "type": "text"
+                                    },
+                                    "rules[][value]": {
+                                        "type": "text"
+                                    },
+                                    "rules_to_delete[]": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Delete description",
+                "description": "Delete description",
+                "operationId": "delete_description",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "font description",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/font-group": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get font groups",
+                "description": "Get font groups",
+                "operationId": "get_fontGroups",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Create font group",
+                "description": "Create font group",
+                "operationId": "create_fontGroup",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "font[][ascii]": {
+                                        "type": "text"
+                                    },
+                                    "font[][unicode]": {
+                                        "type": "text"
+                                    },
+                                    "font[][hex]": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/font-group/{id}": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get font group",
+                "description": "Get font group",
+                "operationId": "get_fontGroup",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "font group id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Update font group",
+                "description": "Update font group",
+                "operationId": "update_fontGroup",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "font group id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "font[][ascii]": {
+                                        "type": "text"
+                                    },
+                                    "font[][unicode]": {
+                                        "type": "text"
+                                    },
+                                    "font[][hex]": {
+                                        "type": "text"
+                                    },
+                                    "font_to_delete[]": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Delete font group",
+                "description": "Delete font group",
+                "operationId": "delete_fontGroup",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "font group id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/holiday": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get holidays",
+                "description": "Get holidays",
+                "operationId": "get_holidays",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Create holiday",
+                "description": "Create holiday",
+                "operationId": "create_holiday",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "date"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/holiday/{id}": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get holiday",
+                "description": "Get holiday",
+                "operationId": "get_holiday",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "holiday id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Update holiday",
+                "description": "Update holiday",
+                "operationId": "update_holiday",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "holiday id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Delete holiday",
+                "description": "Delete holiday",
+                "operationId": "delete_holiday",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "holiday id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/range": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get ranges",
+                "description": "Get ranges",
+                "operationId": "get_ranges",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Create range",
+                "description": "Create range",
+                "operationId": "create_range",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "start",
+                                    "end"
+                                ],
+                                "properties": {
+                                    "start": {
+                                        "type": "text"
+                                    },
+                                    "end": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/range/{id}": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get range",
+                "description": "Get range",
+                "operationId": "get_range",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "range id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Update range",
+                "description": "Update range",
+                "operationId": "update_range",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "range id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "start": {
+                                        "type": "text"
+                                    },
+                                    "end": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Delete range",
+                "description": "Delete range",
+                "operationId": "delete_range",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "range id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/state": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get states",
+                "description": "Get states",
+                "operationId": "get_states",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/company": {
             "get": {
                 "tags": [
-                    "Company"
+                    "Partners"
                 ],
                 "summary": "Get companies",
                 "description": "Get companies",
@@ -146,7 +1194,7 @@
             },
             "post": {
                 "tags": [
-                    "Company"
+                    "Partners"
                 ],
                 "summary": "Create company",
                 "description": "Create company",
@@ -213,7 +1261,7 @@
         "/api/company/{id}": {
             "get": {
                 "tags": [
-                    "Company"
+                    "Partners"
                 ],
                 "summary": "Get company",
                 "description": "Get company",
@@ -246,7 +1294,7 @@
             },
             "put": {
                 "tags": [
-                    "Company"
+                    "Partners"
                 ],
                 "summary": "Update company",
                 "description": "Update company",
@@ -319,7 +1367,7 @@
             },
             "delete": {
                 "tags": [
-                    "Company"
+                    "Partners"
                 ],
                 "summary": "Delete company",
                 "description": "Delete company",
@@ -354,7 +1402,7 @@
         "/api/company/search/{search}": {
             "get": {
                 "tags": [
-                    "Company"
+                    "Partners"
                 ],
                 "summary": "Search company",
                 "description": "Search company",
@@ -389,7 +1437,7 @@
         "/api/customer": {
             "get": {
                 "tags": [
-                    "Customer"
+                    "Partners"
                 ],
                 "summary": "Get customers",
                 "description": "Get customers",
@@ -411,7 +1459,7 @@
             },
             "post": {
                 "tags": [
-                    "Customer"
+                    "Partners"
                 ],
                 "summary": "Create customer",
                 "description": "Create customer",
@@ -458,7 +1506,7 @@
         "/api/customer/{id}": {
             "get": {
                 "tags": [
-                    "Customer"
+                    "Partners"
                 ],
                 "summary": "Get customer",
                 "description": "Get customer",
@@ -491,7 +1539,7 @@
             },
             "put": {
                 "tags": [
-                    "Customer"
+                    "Partners"
                 ],
                 "summary": "Update customer",
                 "description": "Update customer",
@@ -542,7 +1590,7 @@
             },
             "delete": {
                 "tags": [
-                    "Customer"
+                    "Partners"
                 ],
                 "summary": "Delete customer",
                 "description": "Delete customer",
@@ -577,7 +1625,7 @@
         "/api/customer/search/{search}": {
             "get": {
                 "tags": [
-                    "Customer"
+                    "Partners"
                 ],
                 "summary": "Search customer",
                 "description": "Search customer",
@@ -609,631 +1657,10 @@
                 }
             }
         },
-        "/api/description": {
-            "get": {
-                "tags": [
-                    "Description"
-                ],
-                "summary": "Get descriptions",
-                "description": "Get descriptions",
-                "operationId": "get_descriptions",
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Description"
-                ],
-                "summary": "Create description",
-                "description": "Create description",
-                "operationId": "create_description",
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [
-                                    "name"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "text"
-                                    },
-                                    "description": {
-                                        "type": "text"
-                                    },
-                                    "split": {
-                                        "type": "text"
-                                    },
-                                    "rules[][id]": {
-                                        "type": "text"
-                                    },
-                                    "rules[][value]": {
-                                        "type": "text"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    },
-                    "409": {
-                        "description": "Conflict"
-                    }
-                }
-            }
-        },
-        "/api/description/{id}": {
-            "get": {
-                "tags": [
-                    "Description"
-                ],
-                "summary": "Get description",
-                "description": "Get description",
-                "operationId": "get_description",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "description id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Description"
-                ],
-                "summary": "Update description",
-                "description": "Update description",
-                "operationId": "update_description",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "description id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [],
-                                "properties": {
-                                    "name": {
-                                        "type": "text"
-                                    },
-                                    "description": {
-                                        "type": "text"
-                                    },
-                                    "split": {
-                                        "type": "integer"
-                                    },
-                                    "rules[][id]": {
-                                        "type": "text"
-                                    },
-                                    "rules[][value]": {
-                                        "type": "text"
-                                    },
-                                    "rules_to_delete[]": {
-                                        "type": "text"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Description"
-                ],
-                "summary": "Delete description",
-                "description": "Delete description",
-                "operationId": "delete_description",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "font description",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
-        "/api/font-group": {
-            "get": {
-                "tags": [
-                    "Font"
-                ],
-                "summary": "Get font groups",
-                "description": "Get font groups",
-                "operationId": "get_fontGroups",
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Font"
-                ],
-                "summary": "Create font group",
-                "description": "Create font group",
-                "operationId": "create_fontGroup",
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [
-                                    "name"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "text"
-                                    },
-                                    "font[][ascii]": {
-                                        "type": "text"
-                                    },
-                                    "font[][unicode]": {
-                                        "type": "text"
-                                    },
-                                    "font[][hex]": {
-                                        "type": "text"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    },
-                    "409": {
-                        "description": "Conflict"
-                    }
-                }
-            }
-        },
-        "/api/font-group/{id}": {
-            "get": {
-                "tags": [
-                    "Font"
-                ],
-                "summary": "Get font group",
-                "description": "Get font group",
-                "operationId": "get_fontGroup",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "font group id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Font"
-                ],
-                "summary": "Update font group",
-                "description": "Update font group",
-                "operationId": "update_fontGroup",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "font group id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [],
-                                "properties": {
-                                    "name": {
-                                        "type": "text"
-                                    },
-                                    "font[][ascii]": {
-                                        "type": "text"
-                                    },
-                                    "font[][unicode]": {
-                                        "type": "text"
-                                    },
-                                    "font[][hex]": {
-                                        "type": "text"
-                                    },
-                                    "font_to_delete[]": {
-                                        "type": "text"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Font"
-                ],
-                "summary": "Delete font group",
-                "description": "Delete font group",
-                "operationId": "delete_fontGroup",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "font group id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
-        "/api/holiday": {
-            "get": {
-                "tags": [
-                    "Holiday"
-                ],
-                "summary": "Get holidays",
-                "description": "Get holidays",
-                "operationId": "get_holidays",
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Holiday"
-                ],
-                "summary": "Create holiday",
-                "description": "Create holiday",
-                "operationId": "create_holiday",
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [
-                                    "name",
-                                    "date"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "text"
-                                    },
-                                    "date": {
-                                        "type": "string",
-                                        "format": "date"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    },
-                    "409": {
-                        "description": "Conflict"
-                    }
-                }
-            }
-        },
-        "/api/holiday/{id}": {
-            "get": {
-                "tags": [
-                    "Holiday"
-                ],
-                "summary": "Get holiday",
-                "description": "Get holiday",
-                "operationId": "get_holiday",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "holiday id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Holiday"
-                ],
-                "summary": "Update holiday",
-                "description": "Update holiday",
-                "operationId": "update_holiday",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "holiday id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [],
-                                "properties": {
-                                    "name": {
-                                        "type": "text"
-                                    },
-                                    "date": {
-                                        "type": "string",
-                                        "format": "date"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Holiday"
-                ],
-                "summary": "Delete holiday",
-                "description": "Delete holiday",
-                "operationId": "delete_holiday",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "holiday id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
         "/api/organization": {
             "get": {
                 "tags": [
-                    "Organization"
+                    "Partners"
                 ],
                 "summary": "Get organizations",
                 "description": "Get organizations",
@@ -1255,7 +1682,7 @@
             },
             "post": {
                 "tags": [
-                    "Organization"
+                    "Partners"
                 ],
                 "summary": "Create organization",
                 "description": "Create organization",
@@ -1302,7 +1729,7 @@
         "/api/organization/{id}": {
             "get": {
                 "tags": [
-                    "Organization"
+                    "Partners"
                 ],
                 "summary": "Get organization",
                 "description": "Get organization",
@@ -1335,7 +1762,7 @@
             },
             "put": {
                 "tags": [
-                    "Organization"
+                    "Partners"
                 ],
                 "summary": "Update organization",
                 "description": "Update organization",
@@ -1386,7 +1813,7 @@
             },
             "delete": {
                 "tags": [
-                    "Organization"
+                    "Partners"
                 ],
                 "summary": "Delete organization",
                 "description": "Delete organization",
@@ -1418,205 +1845,10 @@
                 }
             }
         },
-        "/api/range": {
-            "get": {
-                "tags": [
-                    "Range"
-                ],
-                "summary": "Get ranges",
-                "description": "Get ranges",
-                "operationId": "get_ranges",
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Range"
-                ],
-                "summary": "Create range",
-                "description": "Create range",
-                "operationId": "create_range",
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [
-                                    "start",
-                                    "end"
-                                ],
-                                "properties": {
-                                    "start": {
-                                        "type": "text"
-                                    },
-                                    "end": {
-                                        "type": "text"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    },
-                    "409": {
-                        "description": "Conflict"
-                    }
-                }
-            }
-        },
-        "/api/range/{id}": {
-            "get": {
-                "tags": [
-                    "Range"
-                ],
-                "summary": "Get range",
-                "description": "Get range",
-                "operationId": "get_range",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "range id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Range"
-                ],
-                "summary": "Update range",
-                "description": "Update range",
-                "operationId": "update_range",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "range id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [],
-                                "properties": {
-                                    "start": {
-                                        "type": "text"
-                                    },
-                                    "end": {
-                                        "type": "text"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Range"
-                ],
-                "summary": "Delete range",
-                "description": "Delete range",
-                "operationId": "delete_range",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "range id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
         "/api/sender": {
             "get": {
                 "tags": [
-                    "Sender"
+                    "Partners"
                 ],
                 "summary": "Get senders",
                 "description": "Get senders",
@@ -1638,7 +1870,7 @@
             },
             "post": {
                 "tags": [
-                    "Sender"
+                    "Partners"
                 ],
                 "summary": "Create sender",
                 "description": "Create sender",
@@ -1689,7 +1921,7 @@
         "/api/sender/{id}": {
             "get": {
                 "tags": [
-                    "Sender"
+                    "Partners"
                 ],
                 "summary": "Get sender",
                 "description": "Get sender",
@@ -1722,7 +1954,7 @@
             },
             "put": {
                 "tags": [
-                    "Sender"
+                    "Partners"
                 ],
                 "summary": "Update sender",
                 "description": "Update sender",
@@ -1776,7 +2008,7 @@
             },
             "delete": {
                 "tags": [
-                    "Sender"
+                    "Partners"
                 ],
                 "summary": "Delete sender",
                 "description": "Delete sender",
@@ -1811,7 +2043,7 @@
         "/api/sender/search/{search}": {
             "get": {
                 "tags": [
-                    "Sender"
+                    "Partners"
                 ],
                 "summary": "Search sender",
                 "description": "Search sender",
@@ -1827,30 +2059,6 @@
                         }
                     }
                 ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
-        "/api/state": {
-            "get": {
-                "tags": [
-                    "Helper"
-                ],
-                "summary": "Get states",
-                "description": "Get states",
-                "operationId": "get_states",
                 "responses": {
                     "200": {
                         "description": "Successfully"
@@ -1924,7 +2132,7 @@
                                     "sender": {
                                         "type": "boolean"
                                     },
-                                    "description[]": {
+                                    "descriptions[]": {
                                         "type": "text"
                                     }
                                 },
@@ -2028,10 +2236,10 @@
                                     "sender": {
                                         "type": "boolean"
                                     },
-                                    "description[]": {
+                                    "descriptions[]": {
                                         "type": "text"
                                     },
-                                    "description_to_delete[]": {
+                                    "descriptions_to_delete[]": {
                                         "type": "text"
                                     }
                                 },
@@ -2458,214 +2666,6 @@
                         "name": "id",
                         "in": "path",
                         "description": "transaction type id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
-        "/api/user": {
-            "get": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Get users",
-                "description": "Get users",
-                "operationId": "get_users",
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Create user",
-                "description": "Create user",
-                "operationId": "create_user",
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [
-                                    "username",
-                                    "password",
-                                    "first_name"
-                                ],
-                                "properties": {
-                                    "username": {
-                                        "type": "text"
-                                    },
-                                    "password": {
-                                        "type": "text"
-                                    },
-                                    "first_name": {
-                                        "type": "text"
-                                    },
-                                    "last_name": {
-                                        "type": "text"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    },
-                    "409": {
-                        "description": "Conflict"
-                    }
-                }
-            }
-        },
-        "/api/user/{id}": {
-            "get": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Get user",
-                "description": "Get user",
-                "operationId": "get_user",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "user id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Update user",
-                "description": "Update user",
-                "operationId": "update_user",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "user id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [],
-                                "properties": {
-                                    "username": {
-                                        "type": "text"
-                                    },
-                                    "password": {
-                                        "type": "text"
-                                    },
-                                    "first_name": {
-                                        "type": "text"
-                                    },
-                                    "last_name": {
-                                        "type": "text"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Delete user",
-                "description": "Delete user",
-                "operationId": "delete_user",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "user id",
                         "required": true,
                         "schema": {
                             "type": "integer"

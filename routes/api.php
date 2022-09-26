@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DescriptionController;
-use App\Http\Controllers\FontGroupController;
-use App\Http\Controllers\HolidayController;
-use App\Http\Controllers\OrganizationController;
-use App\Http\Controllers\RangeController;
-use App\Http\Controllers\SenderController;
-use App\Http\Controllers\TransactionCategoryController;
-use App\Http\Controllers\TransactionPageController;
-use App\Http\Controllers\TransactionTypeController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Partners\CustomerController;
+use App\Http\Controllers\Helpers\DescriptionController;
+use App\Http\Controllers\Helpers\FontGroupController;
+use App\Http\Controllers\Helpers\HolidayController;
+use App\Http\Controllers\Partners\OrganizationController;
+use App\Http\Controllers\Helpers\RangeController;
+use App\Http\Controllers\Partners\SenderController;
+use App\Http\Controllers\Partners\CompanyController;
+use App\Http\Controllers\Transactions\TransactionCategoryController;
+use App\Http\Controllers\Transactions\TransactionPageController;
+use App\Http\Controllers\Transactions\TransactionTypeController;
+use App\Http\Controllers\Account\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('api/user', [UserController::class, 'index']);
@@ -30,6 +31,12 @@ Route::post('api/customer', [CustomerController::class, 'store']);
 Route::get('api/customer/{id}', [CustomerController::class, 'show']);
 Route::put('api/customer/{id}', [CustomerController::class, 'update']);
 Route::delete('api/customer/{id}', [CustomerController::class, 'destroy']);
+
+Route::get('api/company', [CompanyController::class, 'index']);
+Route::post('api/company', [CompanyController::class, 'store']);
+Route::get('api/company/{id}', [CompanyController::class, 'show']);
+Route::put('api/company/{id}', [CompanyController::class, 'update']);
+Route::delete('api/company/{id}', [CompanyController::class, 'destroy']);
 
 Route::get('api/organization', [OrganizationController::class, 'index']);
 Route::post('api/organization', [OrganizationController::class, 'store']);
