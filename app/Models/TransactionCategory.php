@@ -4,23 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Config;
 
-class TransactionType extends Model
+class TransactionCategory extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'transaction_type_id',
         'name',
+        'offset',
+        'customer',
+        'sender',
         'status'
     ];
 
     protected $attributes = ['status' => 1];
 
-    public function transaction_categories(): HasOneOrMany
+    public function transaction_type(): BelongsTo
     {
-        return $this->hasMany(TransactionCategory::class, 'transaction_type_id')
+        return $this->belongsTo(TransactionType::class, 'transaction_type_id')
                         ->where('status', Config::get('custom.status.active'));
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\RangeController;
 use App\Http\Controllers\SenderController;
+use App\Http\Controllers\TransactionCategoryController;
 use App\Http\Controllers\TransactionPageController;
 use App\Http\Controllers\TransactionTypeController;
 use App\Http\Controllers\UserController;
@@ -71,3 +72,9 @@ Route::post('api/description', [DescriptionController::class, 'store']);
 Route::get('api/description/{id}', [DescriptionController::class, 'show']);
 Route::put('api/description/{id}', [DescriptionController::class, 'update']);
 Route::delete('api/description/{id}', [DescriptionController::class, 'destroy']);
+
+Route::get('api/transaction-category', [TransactionCategoryController::class, 'index']);
+Route::post('api/transaction-category', [TransactionCategoryController::class, 'store']);
+Route::get('api/transaction-category/{id}', [TransactionCategoryController::class, 'show']);
+Route::put('api/transaction-category/{id}', [TransactionCategoryController::class, 'update']);
+Route::delete('api/transaction-category/{id}', [TransactionCategoryController::class, 'destroy']);

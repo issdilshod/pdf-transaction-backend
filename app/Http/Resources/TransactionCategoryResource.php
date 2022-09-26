@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Models\TransactionType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TransactionTypeResource extends JsonResource
+class TransactionCategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +18,10 @@ class TransactionTypeResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'transaction_categories' => TransactionCategoryResource::collection($this->transaction_categories),
+            'offset' => $this->offset,
+            'customer' => $this->customer,
+            'sender' => $this->sender,
+            'transaction_type_id' => $this->transaction_type_id,
         ];
     }
 }
