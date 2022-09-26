@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Resources\TransactionCategoryResource;
 use App\Models\TransactionCategory;
+use App\Models\TransactionCategoryToDescription;
 use Illuminate\Support\Facades\Config;
 
 class TransactionCategoryService {
@@ -31,6 +32,15 @@ class TransactionCategoryService {
                                         ->first();
         if ($exsist==null){
             $created = TransactionCategory::create($transactionCategory);
+            // add description if exsist
+            if (isset($transactionCategory['descriptions'])){
+                foreach ($transactionCategory['descriptions'] AS $key => $value):
+                    TransactionCategoryToDescription::create([
+                        'category_id' => $created->id,
+                        'description_id' => $value
+                    ]);
+                endforeach;
+            }
             return new TransactionCategoryResource($created);
         }
         return response()->json([
@@ -47,6 +57,22 @@ class TransactionCategoryService {
                                         ->first();
         if ($exsist==null){
             $transactionCategory->update($update);
+            // add description if exsist
+            if (isset($update['descriptions'])){
+                foreach ($update['descriptions'] AS $key => $value):
+                    TransactionCategoryToDescription::create([
+                        'category_id' => $transactionCategory->id,
+                        'description_id' => $value
+                    ]);
+                endforeach;
+            }
+            // add description if exsist
+            if (isset($update['descriptions_to_delete'])){
+                foreach ($update['descriptions_to_delete'] AS $key => $value):
+                    $tranCateg_to_desc = TransactionCategoryToDescription::where('id', $value);
+                    $tranCateg_to_desc->update(['status' => Config::get('custom.status.delete')]);
+                endforeach;
+            }
             return new TransactionCategoryResource($transactionCategory);
         }
         return response()->json([

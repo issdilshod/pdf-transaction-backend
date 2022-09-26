@@ -51,7 +51,7 @@ class TransactionCategoryController extends Controller
       *                         @OA\Property(property="offset", type="text"),
       *                         @OA\Property(property="customer", type="bool"),
       *                         @OA\Property(property="sender", type="bool"),
-      *                         @OA\Property(property="description[]", type="text")
+      *                         @OA\Property(property="descriptions[]", type="text")
       *                     ),
       *                 ),
       *             ),
@@ -70,7 +70,7 @@ class TransactionCategoryController extends Controller
             'offset' => '',
             'customer' => '',
             'sender' => '',
-            'description' => ''
+            'descriptions' => ''
         ]);
 
         $response = $this->transactionCategoryService->create_transactionCategory($validated);
@@ -127,8 +127,8 @@ class TransactionCategoryController extends Controller
       *                         @OA\Property(property="offset", type="integer"),
       *                         @OA\Property(property="customer", type="bool"),
       *                         @OA\Property(property="sender", type="bool"),
-      *                         @OA\Property(property="description[]", type="text"),
-      *                         @OA\Property(property="description_to_delete[]", type="text"),
+      *                         @OA\Property(property="descriptions[]", type="text"),
+      *                         @OA\Property(property="descriptions_to_delete[]", type="text"),
       *                     ),
       *                 ),
       *             ),
@@ -146,8 +146,8 @@ class TransactionCategoryController extends Controller
             'offset' => '',
             'customer' => '',
             'sender' => '',
-            'description' => '',
-            'description_to_delete' => '',
+            'descriptions' => '',
+            'descriptions_to_delete' => '',
         ]);
 
         $response = $this->transactionCategoryService->update_transactionCategory($validated, $transactionCategory);

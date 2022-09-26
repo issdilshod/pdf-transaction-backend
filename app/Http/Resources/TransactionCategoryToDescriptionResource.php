@@ -15,7 +15,7 @@ class TransactionCategoryToDescriptionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'descriptions' => DescriptionResource::collection($this->descriptions)
+            'description' => new DescriptionResource($this->description)
         ];
     }
 }
