@@ -13,6 +13,7 @@ use App\Http\Controllers\Transactions\TransactionPageController;
 use App\Http\Controllers\Transactions\TransactionTypeController;
 use App\Http\Controllers\Account\UserController;
 use App\Http\Controllers\Statements\StatementController;
+use App\Http\Controllers\Statements\StatementPeriodController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('api/user', [UserController::class, 'index']);
@@ -92,3 +93,7 @@ Route::post('api/statement', [StatementController::class, 'store']);
 Route::get('api/statement/{id}', [StatementController::class, 'show']);
 Route::put('api/statement/{id}', [StatementController::class, 'update']);
 Route::delete('api/statement/{id}', [StatementController::class, 'destroy']);
+
+Route::post('api/statement-period', [StatementPeriodController::class, 'store']);
+Route::put('api/statement-period/{id}', [StatementPeriodController::class, 'update']);
+Route::delete('api/statement-period/{id}', [StatementPeriodController::class, 'destroy']);

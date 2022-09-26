@@ -2,11 +2,9 @@
 
 namespace App\Http\Resources\Statements;
 
-use App\Http\Resources\Partners\CompanyResource;
-use App\Http\Resources\Partners\OrganizationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class StatementResource extends JsonResource
+class StatementPeriodResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,10 +16,8 @@ class StatementResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'company' => new CompanyResource($this->company),
-            'organization' => new OrganizationResource($this->organization),
-            'name' => $this->name,
-            'periods' => StatementPeriodResource::collection($this->periods)
+            'statement_id' => $this->statement_id,
+            'period' => $this->period
         ];
     }
 }

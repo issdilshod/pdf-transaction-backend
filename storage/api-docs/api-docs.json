@@ -2277,6 +2277,145 @@
                 }
             }
         },
+        "/api/statement-period": {
+            "post": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Create statement period",
+                "description": "Create statement period",
+                "operationId": "create_statementPeriod",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "statement_id",
+                                    "period"
+                                ],
+                                "properties": {
+                                    "statement_id": {
+                                        "type": "integer"
+                                    },
+                                    "period": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/statement-period/{id}": {
+            "put": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Update statement period",
+                "description": "Update statement period",
+                "operationId": "update_statementPeriod",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "statement period id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "period": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Delete statement period",
+                "description": "Delete statement period",
+                "operationId": "delete_statementPeriod",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "statement period id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/transaction-category": {
             "get": {
                 "tags": [

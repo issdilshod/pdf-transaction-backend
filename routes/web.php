@@ -15,6 +15,7 @@ use App\Http\Controllers\Transactions\TransactionPageController;
 use App\Http\Controllers\Transactions\TransactionTypeController;
 use App\Http\Controllers\Account\UserController;
 use App\Http\Controllers\Statements\StatementController;
+use App\Http\Controllers\Statements\StatementPeriodController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('custom')->group(function() {
@@ -51,6 +52,8 @@ Route::middleware('custom')->group(function() {
     Route::resource('api/transaction-category', TransactionCategoryController::class);
 
     Route::resource('api/statement', StatementController::class);
+
+    Route::resource('api/statement-period', StatementPeriodController::class);
 });
 
 Route::post('api/login', [AccountController::class, 'login']);
