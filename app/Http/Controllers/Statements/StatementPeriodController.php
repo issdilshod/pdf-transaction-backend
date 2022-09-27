@@ -28,9 +28,18 @@ class StatementPeriodController extends Controller
       *                     mediaType="multipart/form-data",
       *                     @OA\Schema(
       *                         type="object",
-      *                         required={"statement_id", "period"},
+      *                         required={"statement_id", "period", "transactions[][type_id]", "transactions[][category_id]", "transactions[][customer_id]", "transactions[][sender_id]", "transactions[][date]", "transactions[][amount]", "transactions[][amount_min]", "transactions[][amount_max]"},
       *                         @OA\Property(property="statement_id", type="integer"),
-      *                         @OA\Property(property="period", type="date")
+      *                         @OA\Property(property="period", type="date"),
+      *
+      *                         @OA\Property(property="transactions[][type_id]", type="integer"),
+      *                         @OA\Property(property="transactions[][category_id]", type="integer"),
+      *                         @OA\Property(property="transactions[][customer_id]", type="integer"),
+      *                         @OA\Property(property="transactions[][sender_id]", type="integer"),
+      *                         @OA\Property(property="transactions[][date]", type="datetime"),
+      *                         @OA\Property(property="transactions[][amount]", type="float"),
+      *                         @OA\Property(property="transactions[][amount_min]", type="float"),
+      *                         @OA\Property(property="transactions[][amount_max]", type="float")
       *                     ),
       *                 ),
       *             ),
@@ -45,7 +54,8 @@ class StatementPeriodController extends Controller
     {
         $validated = $request->validate([
             'statement_id' => 'required',
-            'period' => 'required'
+            'period' => 'required',
+            'transactions' => 'required'
         ]);
 
         $response = $this->statementPeriodService->create_statementPeriod($validated);
@@ -72,7 +82,17 @@ class StatementPeriodController extends Controller
       *                     @OA\Schema(
       *                         type="object",
       *                         required={},
-      *                         @OA\Property(property="period", type="date")
+      *                         @OA\Property(property="period", type="date"),
+      *                         @OA\Property(property="transactions[][type_id]", type="integer"),
+      *                         @OA\Property(property="transactions[][category_id]", type="integer"),
+      *                         @OA\Property(property="transactions[][customer_id]", type="integer"),
+      *                         @OA\Property(property="transactions[][sender_id]", type="integer"),
+      *                         @OA\Property(property="transactions[][date]", type="datetime"),
+      *                         @OA\Property(property="transactions[][amount]", type="float"),
+      *                         @OA\Property(property="transactions[][amount_min]", type="float"),
+      *                         @OA\Property(property="transactions[][amount_max]", type="float"),
+      *
+      *                         @OA\Property(property="transactions_to_delete[]", type="integer"),
       *                     ),
       *                 ),
       *             ),
@@ -85,7 +105,10 @@ class StatementPeriodController extends Controller
     public function update(Request $request, StatementPeriod $statementPeriod)
     {
         $validated = $request->validate([
-            'period' => ''
+            'statement_id' => '',
+            'period' => '',
+            'transactions' => '',
+            'transactions_to_delete' => ''
         ]);
 
         $response = $this->statementPeriodService->update_statementPeriod($validated, $statementPeriod);

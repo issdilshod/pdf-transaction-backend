@@ -17,7 +17,8 @@ class StatementPeriodResource extends JsonResource
         return [
             'id' => $this->id,
             'statement_id' => $this->statement_id,
-            'period' => $this->period
+            'period' => $this->period,
+            'transactions' => StatementTransactionResource::collection($this->transactions)
         ];
     }
 }

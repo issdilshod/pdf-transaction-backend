@@ -2291,7 +2291,15 @@
                             "schema": {
                                 "required": [
                                     "statement_id",
-                                    "period"
+                                    "period",
+                                    "transactions[][type_id]",
+                                    "transactions[][category_id]",
+                                    "transactions[][customer_id]",
+                                    "transactions[][sender_id]",
+                                    "transactions[][date]",
+                                    "transactions[][amount]",
+                                    "transactions[][amount_min]",
+                                    "transactions[][amount_max]"
                                 ],
                                 "properties": {
                                     "statement_id": {
@@ -2300,6 +2308,34 @@
                                     "period": {
                                         "type": "string",
                                         "format": "date"
+                                    },
+                                    "transactions[][type_id]": {
+                                        "type": "integer"
+                                    },
+                                    "transactions[][category_id]": {
+                                        "type": "integer"
+                                    },
+                                    "transactions[][customer_id]": {
+                                        "type": "integer"
+                                    },
+                                    "transactions[][sender_id]": {
+                                        "type": "integer"
+                                    },
+                                    "transactions[][date]": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "transactions[][amount]": {
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "transactions[][amount_min]": {
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "transactions[][amount_max]": {
+                                        "type": "number",
+                                        "format": "float"
                                     }
                                 },
                                 "type": "object"
@@ -2357,6 +2393,37 @@
                                     "period": {
                                         "type": "string",
                                         "format": "date"
+                                    },
+                                    "transactions[][type_id]": {
+                                        "type": "integer"
+                                    },
+                                    "transactions[][category_id]": {
+                                        "type": "integer"
+                                    },
+                                    "transactions[][customer_id]": {
+                                        "type": "integer"
+                                    },
+                                    "transactions[][sender_id]": {
+                                        "type": "integer"
+                                    },
+                                    "transactions[][date]": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "transactions[][amount]": {
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "transactions[][amount_min]": {
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "transactions[][amount_max]": {
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "transactions_to_delete[]": {
+                                        "type": "integer"
                                     }
                                 },
                                 "type": "object"
