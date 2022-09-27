@@ -10,6 +10,7 @@ class StatementTransactionService {
     public function create_statementTransaction($statementTransaction)
     {
         StatementTransaction::create($statementTransaction);
+        // TODO: Add function to add transaction description
     }
 
     public function update_statementTransaction($statementTransaction)
@@ -20,6 +21,7 @@ class StatementTransactionService {
                                                             ->where('date', $statementTransaction['date'])
                                                             ->where('amount', $statementTransaction['amount'])
                                                             ->first();
+        // TODO: Add function to add transaction description
         if ($statementTransaction_orgin==null){
             $this->create_statementTransaction($statementTransaction);
         }else{
