@@ -24,7 +24,8 @@ class StatementTransactionResource extends JsonResource
             'date' => $this->date,
             'amount' => $this->amount,
             'amount_min' => $this->amount_min,
-            'amount_max' => $this->amount_max
+            'amount_max' => $this->amount_max,
+            'descriptions' => StatementTransactionDescriptionResource::collection($this->descriptions)
         ];
     }
 }
