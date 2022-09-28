@@ -10,7 +10,7 @@ class TransactionTypeService {
 
     public function get_transactionTypes()
     {
-        $transactionTypes = TransactionType::orderBy('created_at', 'DESC')
+        $transactionTypes = TransactionType::orderBy('name', 'ASC')
                                         ->where('status', Config::get('custom.status.active'))
                                         ->get();
         return TransactionTypeResource::collection($transactionTypes);
