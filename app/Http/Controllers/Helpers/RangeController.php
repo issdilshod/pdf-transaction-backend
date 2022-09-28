@@ -134,10 +134,8 @@ class RangeController extends Controller
     public function update(Request $request, Range $range)
     {
         $validated = $request->validate([
-            'username' => '',
-            'password' => '',
-            'first_name' => '',
-            'last_name' => ''
+            'start' => '',
+            'end' => ''
         ]);
 
         $response = $this->rangeService->update_range($validated, $range);
