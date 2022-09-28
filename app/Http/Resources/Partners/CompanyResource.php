@@ -17,7 +17,7 @@ class CompanyResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'address' => AddressResource::collection($this->address)
+            'address' => new AddressResource($this->address)
         ];
     }
 }
