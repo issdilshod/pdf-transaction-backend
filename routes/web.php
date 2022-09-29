@@ -48,6 +48,7 @@ Route::middleware('custom')->group(function() {
     Route::resource('api/font-group', FontGroupController::class);
 
     Route::resource('api/description', DescriptionController::class);
+    Route::get('api/description-rule', [DescriptionController::class, 'rules']);
 
     Route::resource('api/transaction-category', TransactionCategoryController::class);
 

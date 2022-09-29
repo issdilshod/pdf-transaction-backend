@@ -544,6 +544,30 @@
                 }
             }
         },
+        "/api/description-rules": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get description rules",
+                "description": "Get description rules",
+                "operationId": "get_descriptionRules",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/font-group": {
             "get": {
                 "tags": [

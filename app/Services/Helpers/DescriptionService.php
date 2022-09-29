@@ -3,7 +3,9 @@
 namespace App\Services\Helpers;
 
 use App\Http\Resources\Helpers\DescriptionResource;
+use App\Http\Resources\Helpers\DescriptionRuleResource;
 use App\Models\Helpers\Description;
+use App\Models\Helpers\DescriptionRule;
 use App\Models\Helpers\DescriptionToDescriptionRule;
 use Illuminate\Support\Facades\Config;
 
@@ -81,5 +83,11 @@ class DescriptionService {
     public function delete_description($description)
     {
         $description->update(['status' => Config::get('custom.status.delete')]);
+    }
+
+    public function get_descriptionRules(){
+        $descriptionRules = DescriptionRule::where('status', Config::get('custom.status.active'))
+                                            ->get();
+        return DescriptionRuleResource::collection($descriptionRules);
     }
 }

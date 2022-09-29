@@ -172,4 +172,22 @@ class DescriptionController extends Controller
     {
         $this->descriptionService->delete_description($description);
     }
+
+    /**     @OA\GET(
+      *         path="/api/description-rules",
+      *         operationId="get_descriptionRules",
+      *         tags={"Helpers"},
+      *         summary="Get description rules",
+      *         description="Get description rules",
+      *             @OA\Response(response=200, description="Successfully"),
+      *             @OA\Response(response=400, description="Bad request"),
+      *             @OA\Response(response=401, description="Not Authorized"),
+      *             @OA\Response(response=404, description="Resource Not Found"),
+      *     )
+      */
+    public function rules()
+    {
+        $descriptionRules = $this->descriptionService->get_descriptionRules();
+        return $descriptionRules;
+    }
 }
