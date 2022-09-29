@@ -2653,9 +2653,6 @@
                                     },
                                     "descriptions[]": {
                                         "type": "text"
-                                    },
-                                    "descriptions_to_delete[]": {
-                                        "type": "text"
                                     }
                                 },
                                 "type": "object"

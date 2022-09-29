@@ -128,8 +128,7 @@ class TransactionCategoryController extends Controller
       *                         @OA\Property(property="offset", type="integer"),
       *                         @OA\Property(property="customer", type="bool"),
       *                         @OA\Property(property="sender", type="bool"),
-      *                         @OA\Property(property="descriptions[]", type="text"),
-      *                         @OA\Property(property="descriptions_to_delete[]", type="text"),
+      *                         @OA\Property(property="descriptions[]", type="text")
       *                     ),
       *                 ),
       *             ),

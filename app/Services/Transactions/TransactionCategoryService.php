@@ -37,7 +37,7 @@ class TransactionCategoryService {
                 foreach ($transactionCategory['descriptions'] AS $key => $value):
                     TransactionCategoryToDescription::create([
                         'category_id' => $created->id,
-                        'description_id' => $value
+                        'description_id' => $value['id']
                     ]);
                 endforeach;
             }
@@ -65,13 +65,6 @@ class TransactionCategoryService {
                         'category_id' => $transactionCategory->id,
                         'description_id' => $value['id']
                     ]);
-                endforeach;
-            }
-            // add description if exsist
-            if (isset($update['descriptions_to_delete'])){
-                foreach ($update['descriptions_to_delete'] AS $key => $value):
-                    $tranCateg_to_desc = TransactionCategoryToDescription::where('id', $value);
-                    $tranCateg_to_desc->update(['status' => Config::get('custom.status.delete')]);
                 endforeach;
             }
             return new TransactionCategoryResource($transactionCategory);
