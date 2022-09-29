@@ -59,10 +59,11 @@ class TransactionCategoryService {
             $transactionCategory->update($update);
             // add description if exsist
             if (isset($update['descriptions'])){
+                TransactionCategoryToDescription::where('category_id', $transactionCategory->id)->update(['status' => Config::get('custom.status.delete')]);
                 foreach ($update['descriptions'] AS $key => $value):
                     TransactionCategoryToDescription::create([
                         'category_id' => $transactionCategory->id,
-                        'description_id' => $value
+                        'description_id' => $value['id']
                     ]);
                 endforeach;
             }
