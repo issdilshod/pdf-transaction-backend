@@ -691,9 +691,6 @@
                                     },
                                     "font[][hex]": {
                                         "type": "text"
-                                    },
-                                    "font_to_delete[]": {
-                                        "type": "text"
                                     }
                                 },
                                 "type": "object"

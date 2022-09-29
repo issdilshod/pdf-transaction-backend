@@ -120,8 +120,7 @@ class FontGroupController extends Controller
       *                         @OA\Property(property="name", type="text"),
       *                         @OA\Property(property="font[][ascii]", type="text"),
       *                         @OA\Property(property="font[][unicode]", type="text"),
-      *                         @OA\Property(property="font[][hex]", type="text"),
-      *                         @OA\Property(property="font_to_delete[]", type="text")
+      *                         @OA\Property(property="font[][hex]", type="text")
       *                     ),
       *                 ),
       *             ),
@@ -136,7 +135,6 @@ class FontGroupController extends Controller
         $validated = $request->validate([
             'name' => '',
             'font' => '',
-            'font_to_delete' => ''
         ]);
 
         $response = $this->fontGroupService->update_fontGroup($validated, $fontGroup);

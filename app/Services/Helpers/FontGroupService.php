@@ -60,15 +60,10 @@ class FontGroupService {
             $fontGroup->update($update);
             // create/update fonts if exsist
             if (isset($update['font'])){
+                $this->fontService->delete_by_group($fontGroup->id);
                 foreach($update['font'] AS $key => $value):
                     $value['font_group_id'] = $fontGroup->id;
                     $font = $this->fontService->update_font($value);
-                endforeach;
-            }
-            // delete fonts if exsist
-            if (isset($update['font_to_delete'])){
-                foreach($update['font_to_delete'] AS $key => $value):
-                    $this->fontService->delete_font($value);
                 endforeach;
             }
             return new FontGroupResource($fontGroup);
