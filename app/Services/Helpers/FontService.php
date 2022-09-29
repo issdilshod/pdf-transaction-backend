@@ -17,7 +17,7 @@ class FontService {
     {
         $exsist = Font::where('status', Config::get('custom.status.active'))
                         ->where('font_group_id', $font['font_group_id'])
-                        ->where('ascii', $font['acsii'])
+                        ->where('ascii', $font['ascii'])
                         ->first();
         if ($exsist==null){
             $created = Font::create($font);
