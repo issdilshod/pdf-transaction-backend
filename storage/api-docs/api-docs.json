@@ -585,13 +585,13 @@
                                     "name": {
                                         "type": "text"
                                     },
-                                    "font[][ascii]": {
+                                    "fonts[][ascii]": {
                                         "type": "text"
                                     },
-                                    "font[][unicode]": {
+                                    "fonts[][unicode]": {
                                         "type": "text"
                                     },
-                                    "font[][hex]": {
+                                    "fonts[][hex]": {
                                         "type": "text"
                                     }
                                 },
@@ -683,13 +683,13 @@
                                     "name": {
                                         "type": "text"
                                     },
-                                    "font[][ascii]": {
+                                    "fonts[][ascii]": {
                                         "type": "text"
                                     },
-                                    "font[][unicode]": {
+                                    "fonts[][unicode]": {
                                         "type": "text"
                                     },
-                                    "font[][hex]": {
+                                    "fonts[][hex]": {
                                         "type": "text"
                                     }
                                 },

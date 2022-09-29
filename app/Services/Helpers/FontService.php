@@ -3,7 +3,6 @@
 namespace App\Services\Helpers;
 
 use App\Models\Helpers\Font;
-use App\Models\Helpers\FontGroup;
 use Illuminate\Support\Facades\Config;
 
 class FontService {
@@ -51,6 +50,6 @@ class FontService {
     }
 
     public function delete_by_group($group_id){
-        FontGroup::where('font_group_id', $group_id)->update(['status' => Config::get('custom.status.delete')]);
+        Font::where('font_group_id', $group_id)->update(['status' => Config::get('custom.status.delete')]);
     }
 }

@@ -48,9 +48,9 @@ class FontGroupController extends Controller
       *                         type="object",
       *                         required={"name"},
       *                         @OA\Property(property="name", type="text"),
-      *                         @OA\Property(property="font[][ascii]", type="text"),
-      *                         @OA\Property(property="font[][unicode]", type="text"),
-      *                         @OA\Property(property="font[][hex]", type="text"),
+      *                         @OA\Property(property="fonts[][ascii]", type="text"),
+      *                         @OA\Property(property="fonts[][unicode]", type="text"),
+      *                         @OA\Property(property="fonts[][hex]", type="text"),
       *                     ),
       *                 ),
       *             ),
@@ -65,7 +65,7 @@ class FontGroupController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'font' => ''
+            'fonts' => ''
         ]);
 
         $response = $this->fontGroupService->create_fontGroup($validated);
@@ -118,9 +118,9 @@ class FontGroupController extends Controller
       *                         type="object",
       *                         required={},
       *                         @OA\Property(property="name", type="text"),
-      *                         @OA\Property(property="font[][ascii]", type="text"),
-      *                         @OA\Property(property="font[][unicode]", type="text"),
-      *                         @OA\Property(property="font[][hex]", type="text")
+      *                         @OA\Property(property="fonts[][ascii]", type="text"),
+      *                         @OA\Property(property="fonts[][unicode]", type="text"),
+      *                         @OA\Property(property="fonts[][hex]", type="text")
       *                     ),
       *                 ),
       *             ),
@@ -134,7 +134,7 @@ class FontGroupController extends Controller
     {
         $validated = $request->validate([
             'name' => '',
-            'font' => '',
+            'fonts' => '',
         ]);
 
         $response = $this->fontGroupService->update_fontGroup($validated, $fontGroup);
