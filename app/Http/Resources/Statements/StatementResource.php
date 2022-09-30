@@ -21,7 +21,8 @@ class StatementResource extends JsonResource
             'company' => new CompanyResource($this->company),
             'organization' => new OrganizationResource($this->organization),
             'name' => $this->name,
-            'periods' => StatementPeriodResource::collection($this->periods)
+            'periods' => StatementPeriodResource::collection($this->periods),
+            'created_at' => $this->created_at
         ];
     }
 }
