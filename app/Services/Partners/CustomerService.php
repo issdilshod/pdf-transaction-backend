@@ -64,4 +64,35 @@ class CustomerService {
                             ->get();
         return CustomerResource::collection($customers);
     }
+
+    public function import_customer($object)
+    {
+        $tmpArray = [];
+        // mapping
+        foreach ($object['data'] AS $key => $value):
+            $tmpArray[$key] = [
+                'name' => $value[$object['mapping']['name']], 
+            ];
+        endforeach;
+
+        // recording
+        $counter = ['recorded_count' => 0, 'exsist_count' => 0];
+        foreach ($tmpArray AS $key => $value):
+            $exsist = Customer::where('status', Config::get('custom.status.active'))
+                                ->where('name', $value['name'])
+                                ->first();
+            if ($exsist==null){
+                $customer = Customer::create($value);
+                $counter['recorded_count']++;
+            }else{
+                $counter['exsist_count']++;
+            }
+        endforeach;
+        if ($counter['recorded_count']>0){
+            return $counter;
+        }
+        return response()->json([
+            'error' => 'Data exsist.'
+        ], 409);
+    }
 }

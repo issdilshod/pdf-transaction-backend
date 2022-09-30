@@ -29,6 +29,7 @@ Route::middleware('custom')->group(function() {
 
     Route::resource('api/customer', CustomerController::class);
     Route::get('api/customer/search/{search}', [CustomerController::class, 'search']);
+    Route::post('api/customer-import', [CustomerController::class, 'import']);
 
     Route::get('api/state', [StateController::class, 'index']);
 

@@ -1678,6 +1678,57 @@
                 }
             }
         },
+        "/api/customer-import": {
+            "post": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Import customers",
+                "description": "Import customers",
+                "operationId": "import_customer",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "mapping",
+                                    "data"
+                                ],
+                                "properties": {
+                                    "mapping": {
+                                        "type": "obj"
+                                    },
+                                    "data": {
+                                        "type": "obj"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
         "/api/organization": {
             "get": {
                 "tags": [
