@@ -164,4 +164,22 @@ class StatementController extends Controller
     {
         $this->statementService->delete_statement($statement);
     }
+
+    /**     @OA\GET(
+      *         path="/api/statement-count",
+      *         operationId="get_statemensCount",
+      *         tags={"Partners"},
+      *         summary="Get statements count",
+      *         description="Get statements count",
+      *             @OA\Response(response=200, description="Successfully"),
+      *             @OA\Response(response=400, description="Bad request"),
+      *             @OA\Response(response=401, description="Not Authorized"),
+      *             @OA\Response(response=404, description="Resource Not Found"),
+      *     )
+      */
+    public function count()
+    {
+        $statements_count = $this->statementService->get_count();
+        return $statements_count;
+    }
 }

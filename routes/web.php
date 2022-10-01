@@ -30,13 +30,16 @@ Route::middleware('custom')->group(function() {
     Route::resource('api/customer', CustomerController::class);
     Route::get('api/customer/search/{search}', [CustomerController::class, 'search']);
     Route::post('api/customer-import', [CustomerController::class, 'import']);
+    Route::get('api/customer-count', [CustomerController::class, 'count']);
 
     Route::get('api/state', [StateController::class, 'index']);
 
     Route::resource('api/company', CompanyController::class);
     Route::get('api/company/search/{search}', [CompanyController::class, 'search']);
+    Route::get('api/company-count', [CompanyController::class, 'count']);
 
     Route::resource('api/organization', OrganizationController::class);
+    Route::get('api/organization-count', [OrganizationController::class, 'count']);
 
     Route::resource('api/transaction-type', TransactionTypeController::class);
 
@@ -54,6 +57,7 @@ Route::middleware('custom')->group(function() {
     Route::resource('api/transaction-category', TransactionCategoryController::class);
 
     Route::resource('api/statement', StatementController::class);
+    Route::get('api/statement-count', [StatementController::class, 'count']);
 
     Route::resource('api/statement-period', StatementPeriodController::class);
 });

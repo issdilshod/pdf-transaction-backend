@@ -55,4 +55,11 @@ class OrganizationService {
     {
         $organization->update(['status' => Config::get('custom.status.delete')]);
     }
+
+    public function get_count()
+    {
+        $organizations = Organization::where('status', Config::get('custom.status.active'))
+                                ->get();
+        return count($organizations);
+    }
 }

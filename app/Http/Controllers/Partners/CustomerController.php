@@ -218,4 +218,22 @@ class CustomerController extends Controller
         $response = $this->customerService->import_customer($validated);
         return $response;
     }
+
+    /**     @OA\GET(
+      *         path="/api/customer-count",
+      *         operationId="get_customersCount",
+      *         tags={"Partners"},
+      *         summary="Get customers count",
+      *         description="Get customers count",
+      *             @OA\Response(response=200, description="Successfully"),
+      *             @OA\Response(response=400, description="Bad request"),
+      *             @OA\Response(response=401, description="Not Authorized"),
+      *             @OA\Response(response=404, description="Resource Not Found"),
+      *     )
+      */
+    public function count()
+    {
+        $customers_count = $this->customerService->get_count();
+        return $customers_count;
+    }
 }

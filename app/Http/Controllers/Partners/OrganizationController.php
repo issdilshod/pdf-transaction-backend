@@ -157,4 +157,22 @@ class OrganizationController extends Controller
     {
         $this->organizationService->delete_organization($organization);
     }
+
+    /**     @OA\GET(
+      *         path="/api/organization-count",
+      *         operationId="get_organizationsCount",
+      *         tags={"Partners"},
+      *         summary="Get organizations count",
+      *         description="Get organizations count",
+      *             @OA\Response(response=200, description="Successfully"),
+      *             @OA\Response(response=400, description="Bad request"),
+      *             @OA\Response(response=401, description="Not Authorized"),
+      *             @OA\Response(response=404, description="Resource Not Found"),
+      *     )
+      */
+    public function count()
+    {
+        $organizations_count = $this->organizationService->get_count();
+        return $organizations_count;
+    }
 }

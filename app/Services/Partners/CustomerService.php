@@ -95,4 +95,11 @@ class CustomerService {
             'error' => 'Data exsist.'
         ], 409);
     }
+
+    public function get_count()
+    {
+        $customers = Customer::where('status', Config::get('custom.status.active'))
+                                ->get();
+        return count($customers);
+    }
 }

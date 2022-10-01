@@ -203,4 +203,22 @@ class CompanyController extends Controller
         return $companies;
     }
 
+    /**     @OA\GET(
+      *         path="/api/company-count",
+      *         operationId="get_companaiesCount",
+      *         tags={"Partners"},
+      *         summary="Get companies count",
+      *         description="Get companies count",
+      *             @OA\Response(response=200, description="Successfully"),
+      *             @OA\Response(response=400, description="Bad request"),
+      *             @OA\Response(response=401, description="Not Authorized"),
+      *             @OA\Response(response=404, description="Resource Not Found"),
+      *     )
+      */
+    public function count()
+    {
+        $companies_count = $this->companyService->get_count();
+        return $companies_count;
+    }
+
 }

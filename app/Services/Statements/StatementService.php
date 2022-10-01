@@ -39,6 +39,13 @@ class StatementService {
         $statement->update(['status' => Config::get('custom.status.delete')]);
     }
 
+    public function get_count()
+    {
+        $statements = Statement::where('status', Config::get('custom.status.active'))
+                                ->get();
+        return count($statements);
+    }
+
     public function trash_statement($id)
     {
 

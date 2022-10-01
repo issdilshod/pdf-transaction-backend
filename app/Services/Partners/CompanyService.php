@@ -62,4 +62,11 @@ class CompanyService {
                                 ->get();
         return CompanyResource::collection($companies);
     }
+
+    public function get_count()
+    {
+        $companies = Company::where('status', Config::get('custom.status.active'))
+                                ->get();
+        return count($companies);
+    }
 }

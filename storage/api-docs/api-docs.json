@@ -1455,6 +1455,30 @@
                 }
             }
         },
+        "/api/company-count": {
+            "get": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Get companies count",
+                "description": "Get companies count",
+                "operationId": "get_companaiesCount",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/customer": {
             "get": {
                 "tags": [
@@ -1729,6 +1753,30 @@
                 }
             }
         },
+        "/api/customer-count": {
+            "get": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Get customers count",
+                "description": "Get customers count",
+                "operationId": "get_customersCount",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/organization": {
             "get": {
                 "tags": [
@@ -1901,6 +1949,30 @@
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/organization-count": {
+            "get": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Get organizations count",
+                "description": "Get organizations count",
+                "operationId": "get_organizationsCount",
                 "responses": {
                     "200": {
                         "description": "Successfully"
@@ -2333,6 +2405,30 @@
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/statement-count": {
+            "get": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Get statements count",
+                "description": "Get statements count",
+                "operationId": "get_statemensCount",
                 "responses": {
                     "200": {
                         "description": "Successfully"
