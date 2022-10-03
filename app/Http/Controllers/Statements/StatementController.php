@@ -46,7 +46,7 @@ class StatementController extends Controller
       *                     mediaType="multipart/form-data",
       *                     @OA\Schema(
       *                         type="object",
-      *                         required={"company_id", "organization_id", "name"},
+      *                         required={"company_id", "organization_id"},
       *                         @OA\Property(property="company_id", type="integer"),
       *                         @OA\Property(property="organization_id", type="integer"),
       *                         @OA\Property(property="name", type="text")

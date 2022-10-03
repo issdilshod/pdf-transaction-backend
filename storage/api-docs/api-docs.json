@@ -2255,8 +2255,7 @@
                             "schema": {
                                 "required": [
                                     "company_id",
-                                    "organization_id",
-                                    "name"
+                                    "organization_id"
                                 ],
                                 "properties": {
                                     "company_id": {
