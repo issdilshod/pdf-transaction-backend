@@ -15,6 +15,7 @@ class DescriptionToDescriptionRuleResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'description_rule' => new DescriptionRuleResource($this->description_rule),
             'value' => $this->value
         ];

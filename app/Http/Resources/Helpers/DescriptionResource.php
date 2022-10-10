@@ -19,7 +19,7 @@ class DescriptionResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'split' => $this->split,
-            'description_rules' => DescriptionToDescriptionRuleResource::collection($this->description_rules)
+            'rules' => DescriptionToDescriptionRuleResource::collection($this->description_rules)
         ];
     }
 }
