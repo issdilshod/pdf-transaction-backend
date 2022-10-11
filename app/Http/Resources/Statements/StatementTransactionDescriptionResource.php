@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Statements;
 
+use App\Http\Resources\Helpers\DescriptionResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class StatementTransactionDescriptionResource extends JsonResource
@@ -16,7 +17,7 @@ class StatementTransactionDescriptionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'description' => $this->description,
+            'description' => new DescriptionResource($this->description),
             'value' => $this->value
         ];
     }
