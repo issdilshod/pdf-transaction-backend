@@ -36,7 +36,7 @@ class DescriptionService {
                 foreach($description['rules'] AS $key => $value):
                     DescriptionToDescriptionRule::create([
                         'description_id' => $created->id, 
-                        'description_rule_id' => $value['id'],
+                        'description_rule_id' => $value['rule_id'],
                         'value' => $value['value']
                     ]);
                 endforeach;
@@ -58,19 +58,13 @@ class DescriptionService {
             $description->update($update);
             // create rules if exsist
             if (isset($update['rules'])){
+                DescriptionToDescriptionRule::where('description_id', $description->id)->update(['status' => Config::get('custom.status.delete')]);
                 foreach($update['rules'] AS $key => $value):
                     DescriptionToDescriptionRule::create([
                         'description_id' => $description->id, 
-                        'description_rule_id' => $value['id'],
+                        'description_rule_id' => $value['rule_id'],
                         'value' => $value['value']
                     ]);
-                endforeach;
-            }
-            // delete rules if exsist
-            if (isset($update['rules_to_delete'])){
-                foreach($update['rules_to_delete'] AS $key => $value):
-                    $desc_to_descRule = DescriptionToDescriptionRule::where('id', $value);
-                    $desc_to_descRule->update(['status' => Config::get('custom.status.delete')]);
                 endforeach;
             }
             return new DescriptionResource($description);
