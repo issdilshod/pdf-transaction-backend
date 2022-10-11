@@ -79,7 +79,8 @@ class DescriptionService {
         $description->update(['status' => Config::get('custom.status.delete')]);
     }
 
-    public function get_descriptionRules(){
+    public function get_descriptionRules()
+    {
         $descriptionRules = DescriptionRule::where('status', Config::get('custom.status.active'))
                                             ->get();
         return DescriptionRuleResource::collection($descriptionRules);
