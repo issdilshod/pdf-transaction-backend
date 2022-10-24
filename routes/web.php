@@ -14,6 +14,7 @@ use App\Http\Controllers\Transactions\TransactionCategoryController;
 use App\Http\Controllers\Transactions\TransactionPageController;
 use App\Http\Controllers\Transactions\TransactionTypeController;
 use App\Http\Controllers\Account\UserController;
+use App\Http\Controllers\Statements\PdfContentController;
 use App\Http\Controllers\Statements\StatementController;
 use App\Http\Controllers\Statements\StatementPeriodController;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,8 @@ Route::middleware('custom')->group(function() {
     Route::get('api/statement-count', [StatementController::class, 'count']);
 
     Route::resource('api/statement-period', StatementPeriodController::class);
+
+    Route::post('api/hex2ascii', [PdfContentController::class, 'hex2ascii']);
 });
 
 Route::post('api/login', [AccountController::class, 'login']);
