@@ -2264,6 +2264,51 @@
                 }
             }
         },
+        "/api/hex2ascii/period": {
+            "post": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Create ascii from hex period",
+                "description": "Create ascii from hex period",
+                "operationId": "create_ascii_from_hex_period",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "replacement"
+                                ],
+                                "properties": {
+                                    "replacement": {}
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
         "/api/statement": {
             "get": {
                 "tags": [

@@ -17,6 +17,21 @@ class PdfContentService{
         return $entity;
     }
 
+    public function hex2asciiPeriod($entity){
+
+        foreach ($entity['replacement'] as $key => $value):
+            foreach ($value['font'] AS $key1 => $value1):
+                foreach ($value1['content'] AS $key2 => $value2):
+                    if ($value2['hex']!=null){
+                        $entity['replacement'][$key]['font'][$key1]['content'][$key2]['ascii'] = base64_encode($this->hex2binString($value2['hex']));
+                    }
+                endforeach;
+            endforeach;
+        endforeach;
+
+        return $entity;
+    }
+
     private function hex2binString($string){
         $result = '';
         for ($i = 0; $i< strlen($string); $i+=2){

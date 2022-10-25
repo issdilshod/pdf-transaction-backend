@@ -63,6 +63,7 @@ Route::middleware('custom')->group(function() {
     Route::resource('api/statement-period', StatementPeriodController::class);
 
     Route::post('api/hex2ascii', [PdfContentController::class, 'hex2ascii']);
+    Route::post('api/hex2ascii/period', [PdfContentController::class, 'hex2ascii_period']);
 });
 
 Route::post('api/login', [AccountController::class, 'login']);
