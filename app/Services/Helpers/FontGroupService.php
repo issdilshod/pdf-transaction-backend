@@ -63,7 +63,7 @@ class FontGroupService {
                 $this->fontService->delete_by_group($fontGroup->id);
                 foreach($update['fonts'] AS $key => $value):
                     $value['font_group_id'] = $fontGroup->id;
-                    $font = $this->fontService->update_font($value);
+                    $font = $this->fontService->create_font($value);
                 endforeach;
             }
             return new FontGroupResource($fontGroup);
