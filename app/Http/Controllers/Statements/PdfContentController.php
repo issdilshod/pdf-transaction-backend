@@ -42,6 +42,7 @@ class PdfContentController extends Controller
     public function hex2ascii(Request $request)
     {
         $validated = $request->validate([
+            'content' => '',
             'font' => 'array'
         ]);
 
