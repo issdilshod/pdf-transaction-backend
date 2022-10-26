@@ -69,7 +69,6 @@ class PdfContentService{
         $result = []; $count_page = 0; $startxref = ""; $xref = ""; $el_root = ""; $obj_ = ""; $tmp = ""; $tmp2 = "";
         
         $string = file_get_contents($filename);
-
         
         $startxref = $this->getSubstring($string, "startxref", " ");
         $xref = $this->getSubstring($string, "<</Size", ">>");
@@ -124,6 +123,136 @@ class PdfContentService{
         }
         
         return ['pdfTable' => $result, 'filename' => $filename];
+    }
+
+    public function changePdfPages($entity){
+        $obj_ = ""; $tmp = ""; $tmp2 = []; $tmp_arr = []; $i = 0;
+
+        $string = file_get_contents($entity['filename']);
+
+        $result = $string;
+        foreach($entity['pdf'] AS $key => $value){
+            $tmp2 = explode(" ", $value['object_name']);
+
+            // get object in glob string
+            $obj_ = $this->getSubstring($result, trim($tmp2[1])." 0 obj", "endobj");
+            $tmp = $this->getSubstring($obj_, "Length", ">");
+
+            // get length and change length data
+            $tmp_arr = $this->getIndexBetween($tmp, " ", ">", 0, false);
+            $tmp = substr($tmp, 0, $tmp_arr['start_index']+1) . $value['new_length'] . substr($tmp, $tmp_arr['end_index']);
+
+            // set to object
+            $tmp_arr = $this->getIndexBetween($obj_, "Length", ">", 0, false);
+            $obj_ = "\n" . substr($obj_, 0, $tmp_arr['start_index']) . $tmp . substr($obj_, $tmp_arr['end_index']+1) . "\n";
+
+            // get data of content and change
+            $tmp_arr = $this->getIndexBetween($obj_, "stream", "endstream", 0, false);
+            $obj_ = substr($obj_, 0, $tmp_arr['start_index']-1) . "\nstream\n" . base64_decode($entity['compression'][$i]) . "\nendstream" . substr($obj_, $tmp_arr['end_index']+9);
+
+            // set to glob string
+            $tmp_arr = $this->getIndexBetween($result, trim($tmp2[1])." 0 obj", "endobj");
+            $result = substr($result, 0, $tmp_arr['start_index']-1) . $obj_ . substr($result, $tmp_arr['end_index']+7);
+            $i++;
+        }
+
+        return $result;
+    }
+
+    public function changePdfXref($entity){
+        $result = array(); $string_res = "";
+
+        $string = $entity;
+
+        $j= 0; $tmp = 0; $number = ""; $pos = 0;
+        // while object not done
+        while (strpos($string, " 0 obj", $pos+(1+strlen($number)))!=""){
+            $tmp = strpos($string, " 0 obj", $pos+1+strlen($number));
+        
+            $pos = $tmp;
+            // find first number
+            $s_p = 0; $number = "";
+            for ($i = $tmp-1; $i > 0; $i--) {
+                if (is_numeric(substr($string, $i, 1))){
+                    $s_p = $i;
+                    $number = substr($string, $i, 1) . $number;
+                }else{
+                    break;
+                }
+            }
+            // poi
+            $tmp = $s_p;
+            // hex
+            $tmp = strtolower(dechex($tmp));
+            $hex = $tmp;
+            // tw
+            $tmp = $tmp . "00";
+            while (strlen($tmp)<10){
+                $tmp = "0" . $tmp;
+            }
+            $tmp = "01" . $tmp;
+            $tw = $tmp;
+            $result[] = array("obj"=>(int)$number, "poi"=>$s_p, "hex"=>$hex, "tw"=>$tw);
+            $j++;
+        }
+        // sort
+        $sort = array_column($result, 'obj'); 
+        array_multisort($sort, SORT_ASC, $result);
+        // one line
+        foreach($result AS $key => $value){
+            $string_res .= $value['tw'];
+        }
+        $string_res = "0000000000ff" . $string_res;
+        
+        // bin2
+        $string_res = $this->hex2binString($string_res);
+        
+        // gzcompress
+        $tmp_data = gzcompress($string_res);
+
+        $result_x = $this->changePdfXrefIn($string, $tmp_data);
+
+        return $result_x;
+    }
+
+    private function changePdfXrefIn($string, $xref){
+        $index = strpos($string, "/XRef");
+        $start_obj = 0; $end_obj = 0;
+        // find object
+        for ($i = $index; $i > 0; $i--) {
+            if (substr($string, $i, 6)=="endobj"){
+                $start_obj = $i + 7;
+                break;
+            }
+        }
+        $end_obj = strpos($string, "endobj", $start_obj);
+        $end_obj_pos = $end_obj + 7;
+        $tmp_obj = substr($string, $start_obj, $end_obj - $start_obj + 6);
+
+        // set new data
+        $tmp = $this->getSubstring($tmp_obj, "Length", ">");
+
+        // get length and change length data
+        $tmp_arr = $this->getIndexBetween($tmp, " ", ">", 0, false);
+        $tmp = substr($tmp, 0, $tmp_arr['start_index']+1) . strlen($xref) . substr($tmp, $tmp_arr['end_index']);
+
+        // set to object
+        $tmp_arr = $this->getIndexBetween($tmp_obj, "Length", ">", 0, false);
+        $tmp_obj = "\n" . substr($tmp_obj, 0, $tmp_arr['start_index']) . $tmp . substr($tmp_obj, $tmp_arr['end_index']+1) . "\n";
+
+        // get data of content and change
+        $tmp_arr = $this->getIndexBetween($tmp_obj, "stream", "endstream", 0, false);
+        $tmp_obj = substr($tmp_obj, 0, $tmp_arr['start_index']-1) . "\nstream\n" . $xref . "\nendstream" . substr($tmp_obj, $tmp_arr['end_index']+9);
+        // set to glob string
+        $string = substr($string, 0, $start_obj-1) . $tmp_obj . substr($string, $end_obj_pos);
+
+        // EOF number
+        $eof = $start_obj;
+        $eofpos = strpos($string, "startxref");
+        $eofpos1 = strpos($string, "%%EOF");
+        $string = substr($string, 0, $eofpos+9) . "\n" . $eof . "\n" . substr($string, $eofpos1);
+
+        return $string;
     }
 
     private function hex2binString($string){

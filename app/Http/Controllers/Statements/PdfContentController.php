@@ -172,4 +172,49 @@ class PdfContentController extends Controller
         ], 422);
     }
 
+    /**     @OA\POST(
+      *         path="/api/pdf/change",
+      *         operationId="change_pdf_content_pages",
+      *         tags={"Statements"},
+      *         summary="Change pdf content pages",
+      *         description="Change pdf content pages",
+      *             @OA\RequestBody(
+      *                 @OA\JsonContent(),
+      *                 @OA\MediaType(
+      *                     mediaType="multipart/form-data",
+      *                     @OA\Schema(
+      *                         type="object",
+      *                         required={"filename", "compression"},
+      *                         @OA\Property(property="filename"),
+      *                         @OA\Property(property="compression"),
+      *                     ),
+      *                 ),
+      *             ),
+      *             @OA\Response(response=200, description="Successfully"),
+      *             @OA\Response(response=400, description="Bad request"),
+      *             @OA\Response(response=401, description="Not Authorized"),
+      *             @OA\Response(response=404, description="Resource Not Found"),
+      *             @OA\Response(response=409, description="Conflict"),
+      *     )
+      */
+    public function pdf_change(Request $request)
+    {
+        $validated = $request->validate([
+            'filename' => 'required',
+            'pdf' => 'array',
+            'compression' => 'array'
+        ]);
+
+        $respond = $this->pdfContentService->changePdfPages($validated);
+        $respond = $this->pdfContentService->changePdfXref($respond);
+
+        // create pdf file
+        $filename = 'statements/' . Str::uuid()->toString() . '.pdf';
+        $f = fopen($filename, 'w');
+        fwrite($f, $respond);
+        fclose($f);
+
+        return $filename;
+    }
+
 }

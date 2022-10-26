@@ -2399,6 +2399,53 @@
                 }
             }
         },
+        "/api/pdf/change": {
+            "post": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Change pdf content pages",
+                "description": "Change pdf content pages",
+                "operationId": "change_pdf_content_pages",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "filename",
+                                    "compression"
+                                ],
+                                "properties": {
+                                    "filename": {},
+                                    "compression": {}
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
         "/api/statement": {
             "get": {
                 "tags": [
