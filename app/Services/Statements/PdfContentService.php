@@ -35,6 +35,7 @@ class PdfContentService{
     public function hex2asciiPeriod($entity){
 
         foreach ($entity['replacement'] as $key => $value):
+            $entity['replacement'][$key]['content'] = base64_decode($entity['replacement'][$key]['content']);
             foreach ($value['font'] AS $key1 => $value1):
                 foreach ($value1['content'] AS $key2 => $value2):
                     if ($value2['hex']!=null){
@@ -42,10 +43,11 @@ class PdfContentService{
                         $entity['replacement'][$key]['font'][$key1]['content'][$key2]['ascii'] = base64_encode($hexValue);
 
                         // change content
-                        $value['content'] = $this->changeAsciiOnContent($value['content'], $value2['text'], $hexValue, $value2['pos_on_content']);
+                        $entity['replacement'][$key]['content'] = $this->changeAsciiOnContent($entity['replacement'][$key]['content'], $value2['text'], $hexValue, $value2['pos_on_content']);
                     }
                 endforeach;
             endforeach;
+            $entity['replacement'][$key]['content'] = base64_encode($entity['replacement'][$key]['content']);
         endforeach;
 
         return $entity;
@@ -61,8 +63,8 @@ class PdfContentService{
 
     private function changeAsciiOnContent($content, $search, $replace, $position){
 
-        $first_part = substr($content, 0, strpos($content, $search, $position-10));
-        $second_part = substr($content, strpos($content, $search, $position-10)+strlen($search));
+        $first_part = substr($content, 0, strpos($content, $search, $position-20));
+        $second_part = substr($content, strpos($content, $search, $position-20)+strlen($search));
 
         $result = $first_part . '(' . $replace . ')Tj' . $second_part;
 
