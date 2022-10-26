@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Statements;
 use App\Http\Controllers\Controller;
 use App\Services\Statements\PdfContentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PdfContentController extends Controller
 {
@@ -125,6 +126,50 @@ class PdfContentController extends Controller
         return response()->json([
             'data' => $respond
         ], 200);
+    }
+
+    /**     @OA\POST(
+      *         path="/api/upload/template",
+      *         operationId="Upload template",
+      *         tags={"Statements"},
+      *         summary="Upload pdf template",
+      *         description="Upload pdf template",
+      *             @OA\RequestBody(
+      *                 @OA\JsonContent(),
+      *                 @OA\MediaType(
+      *                     mediaType="multipart/form-data",
+      *                     @OA\Schema(
+      *                         type="object",
+      *                         required={"template"},
+      *                         @OA\Property(property="template")
+      *                     ),
+      *                 ),
+      *             ),
+      *             @OA\Response(response=200, description="Successfully"),
+      *             @OA\Response(response=400, description="Bad request"),
+      *             @OA\Response(response=401, description="Not Authorized"),
+      *             @OA\Response(response=404, description="Resource Not Found"),
+      *             @OA\Response(response=409, description="Conflict"),
+      *     )
+      */
+    public function upload_template(Request $request)
+    {
+        if ($request->has('template')){
+            $templateFile = $request->file('template');
+            $fileName = Str::uuid()->toString() . '.' . $templateFile->getClientOriginalExtension();
+            $templateFile->move('uploads', $fileName);
+
+            $respond = $this->pdfContentService->getPdfData('uploads/'.$fileName);
+
+            return response()->json([
+                'data' => $respond
+            ], 200);
+
+        }
+
+        return response()->json([
+            'error' => 'Choose the file'
+        ], 422);
     }
 
 }

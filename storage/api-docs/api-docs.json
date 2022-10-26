@@ -2354,6 +2354,51 @@
                 }
             }
         },
+        "/api/upload/template": {
+            "post": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Upload pdf template",
+                "description": "Upload pdf template",
+                "operationId": "Upload template",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "template"
+                                ],
+                                "properties": {
+                                    "template": {}
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
         "/api/statement": {
             "get": {
                 "tags": [
