@@ -2,7 +2,16 @@
 
 namespace App\Services\Statements;
 
+use App\Helpers\LogHelper;
+
 class PdfContentService{
+
+    private $logHelper;
+
+    public function __construct()
+    {
+        $this->logHelper = new LogHelper();   
+    }
 
     public function hex2ascii($entity){
 
@@ -29,7 +38,11 @@ class PdfContentService{
             foreach ($value['font'] AS $key1 => $value1):
                 foreach ($value1['content'] AS $key2 => $value2):
                     if ($value2['hex']!=null){
-                        $entity['replacement'][$key]['font'][$key1]['content'][$key2]['ascii'] = base64_encode($this->hex2binString($value2['hex']));
+                        $hexValue = $this->hex2binString($value2['hex']);
+                        $entity['replacement'][$key]['font'][$key1]['content'][$key2]['ascii'] = base64_encode($hexValue);
+
+                        // change content
+                        $value['content'] = $this->changeAsciiOnContent($value['content'], $value2['text'], $hexValue, $value2['pos_on_content']);
                     }
                 endforeach;
             endforeach;
@@ -48,8 +61,8 @@ class PdfContentService{
 
     private function changeAsciiOnContent($content, $search, $replace, $position){
 
-        $first_part = substr($content, 0, strpos($content, $search, $position-1));
-        $second_part = substr($content, strpos($content, $search, $position-1)+strlen($search));
+        $first_part = substr($content, 0, strpos($content, $search, $position-10));
+        $second_part = substr($content, strpos($content, $search, $position-10)+strlen($search));
 
         $result = $first_part . '(' . $replace . ')Tj' . $second_part;
 
