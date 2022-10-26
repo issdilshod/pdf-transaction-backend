@@ -53,6 +53,18 @@ class PdfContentService{
         return $entity;
     }
 
+    public function gzipPeriod($entity){
+        $result = [];
+        foreach ($entity['compression'] as $key => $value):
+            $tmpGzip = $value['content'];
+            $tmpGzip = base64_decode($tmpGzip);
+            $tmpGzip = gzcompress($tmpGzip);
+            $tmpGzip = base64_encode($tmpGzip);
+            $result[$key] = $tmpGzip;
+        endforeach;
+        return $result;
+    }
+
     private function hex2binString($string){
         $result = '';
         for ($i = 0; $i< strlen($string); $i+=2){
@@ -63,8 +75,8 @@ class PdfContentService{
 
     private function changeAsciiOnContent($content, $search, $replace, $position){
 
-        $first_part = substr($content, 0, strpos($content, $search, $position-20));
-        $second_part = substr($content, strpos($content, $search, $position-20)+strlen($search));
+        $first_part = substr($content, 0, strpos($content, $search)); //strpos($content, $search, $position-10)
+        $second_part = substr($content, strpos($content, $search)+strlen($search));
 
         $result = $first_part . '(' . $replace . ')Tj' . $second_part;
 

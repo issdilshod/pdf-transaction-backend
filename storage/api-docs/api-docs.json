@@ -2309,6 +2309,51 @@
                 }
             }
         },
+        "/api/gzip/period": {
+            "post": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Create gzip period",
+                "description": "Create gzip period",
+                "operationId": "create_gzip_period",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "compression"
+                                ],
+                                "properties": {
+                                    "compression": {}
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
         "/api/statement": {
             "get": {
                 "tags": [
