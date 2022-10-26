@@ -18,7 +18,7 @@ class PdfContentService{
         $entity['content'] = base64_decode($entity['content']);
         foreach ($entity['font'] AS $key => $value):
             foreach ($value['content'] AS $key1 => $value1):
-                if ($value1['hex']!=null){
+                if ($value1['hex']!=null && $value1['hex']!=''){
                     $hexValue = $this->hex2binString($value1['hex']);
                     $entity['font'][$key]['content'][$key1]['ascii'] = base64_encode($hexValue);
 
@@ -38,7 +38,7 @@ class PdfContentService{
             $entity['replacement'][$key]['content'] = base64_decode($entity['replacement'][$key]['content']);
             foreach ($value['font'] AS $key1 => $value1):
                 foreach ($value1['content'] AS $key2 => $value2):
-                    if ($value2['hex']!=null){
+                    if ($value2['hex']!=null && $value2['hex']!=''){
                         $hexValue = $this->hex2binString($value2['hex']);
                         $entity['replacement'][$key]['font'][$key1]['content'][$key2]['ascii'] = base64_encode($hexValue);
 
