@@ -23,7 +23,17 @@ class StatementPeriodResource extends JsonResource
             'account_number' => $this->account_number,
             'item_previous_cycle' => $this->item_previous_cycle,
             'replacement' => json_decode($this->replacement),
-            'transactions' => StatementTransactionResource::collection($this->transactions)
+            'transactions' => StatementTransactionResource::collection($this->transactions),
+
+            // helpers
+            'pages' => [],
+            'types' => [],
+            'pdf_content' => [
+                'lines' => [],
+                'transactions' => []
+            ],
+            'compression' => []
+
         ];
     }
 }
