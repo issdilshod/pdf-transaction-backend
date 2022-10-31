@@ -15,6 +15,11 @@ class StatementPeriod extends Model
     protected $fillable = [
         'statement_id',
         'period',
+        'begining_balance',
+        'ending_balance',
+        'account_number',
+        'item_previous_cycle',
+        'replacement',
         'status'
     ];
 

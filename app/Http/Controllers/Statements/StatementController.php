@@ -65,7 +65,7 @@ class StatementController extends Controller
         $validated = $request->validate([
             'company_id' => 'required',
             'organization_id' => 'required',
-            'name' => ''
+            'periods' => 'array|required'
         ]);
 
         $response = $this->statementService->create_statement($validated);
@@ -132,9 +132,9 @@ class StatementController extends Controller
     public function update(Request $request, Statement $statement)
     {
         $validated = $request->validate([
-            'company_id' => '',
-            'organization_id' => '',
-            'name' => ''
+            'company_id' => 'required',
+            'organization_id' => 'required',
+            'periods' => 'array|required'
         ]);
 
         $response = $this->statementService->update_statement($validated, $statement);

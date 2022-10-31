@@ -18,9 +18,10 @@ class StatementResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'company_id' => $this->company_id,
             'company' => new CompanyResource($this->company),
+            'organization_id' => $this->organization_id,
             'organization' => new OrganizationResource($this->organization),
-            'name' => $this->name,
             'periods' => StatementPeriodResource::collection($this->periods),
             'created_at' => $this->created_at
         ];

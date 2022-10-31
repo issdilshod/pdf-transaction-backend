@@ -16,10 +16,12 @@ class StatementTransactionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'period_id' => $this->period,
-            'type' => $this->type,
-            'category' => $this->category,
+            'period_id' => $this->period_id,
+            'type_id' => $this->type_id,
+            'category_id' => $this->category_id,
+            'customer_id' => $this->customer_id,
             'customer' => $this->customer,
+            'sender_id' => $this->sender_id,
             'sender' => $this->sender,
             'date' => $this->date,
             'amount' => $this->amount,

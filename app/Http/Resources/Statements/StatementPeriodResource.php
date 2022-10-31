@@ -18,6 +18,11 @@ class StatementPeriodResource extends JsonResource
             'id' => $this->id,
             'statement_id' => $this->statement_id,
             'period' => $this->period,
+            'begining_balance' => $this->begining_balance,
+            'ending_balance' => $this->ending_balance,
+            'account_number' => $this->account_number,
+            'item_previous_cycle' => $this->item_previous_cycle,
+            'replacement' => json_decode($this->replacement),
             'transactions' => StatementTransactionResource::collection($this->transactions)
         ];
     }

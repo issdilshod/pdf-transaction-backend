@@ -2,72 +2,30 @@
 
 namespace App\Services\Statements;
 
-use App\Http\Resources\Statements\StatementPeriodResource;
 use App\Models\Statements\StatementPeriod;
 use Illuminate\Support\Facades\Config;
 
 class StatementPeriodService {
 
-    private $statementTransactionService;
-
-    public function __construct()
+    public function save($entity)
     {
-        $this->statementTransactionService = new StatementTransactionService();
-    }
-
-    public function create_statementPeriod($statementPeriod)
-    {
-        $exsist = StatementPeriod::where('status', Config::get('custom.status.active'))
-                                    ->where('statement_id', $statementPeriod['statement_id'])
-                                    ->where('period', $statementPeriod['period'])
+        $period = StatementPeriod::where('statement_id', $entity['statement_id'])
+                                    ->where('period', $entity['period'])
                                     ->first();
-        if ($exsist==null){
-            $created = StatementPeriod::create($statementPeriod);
-            // create transactions if exsist
-            if (isset($statementPeriod['transactions'])){
-                foreach ($statementPeriod['transactions'] AS $key => $value):
-                    $value['period_id'] = $created->id;
-                    $this->statementTransactionService->create_statementTransaction($value);
-                endforeach;
-            }
-            return new StatementPeriodResource($created);
+        $entity['replacement'] = json_encode($entity['replacement']);
+        $entity['begining_balance'] = (float)$entity['begining_balance'];
+        $entity['ending_balance'] = (float)$entity['ending_balance'];
+        if ($period==null){
+            $period = StatementPeriod::create($entity);
+        }else{
+            $entity['status'] = Config::get('custom.status.active');
+            $period->update($entity);
         }
-        return response()->json([
-            'error' => 'Data exsist.'
-        ], 409);
+        return $period;
     }
 
-    public function update_statementPeriod($update, StatementPeriod $statementPeriod)
+    public function delete($statement_id)
     {
-        $exsist = StatementPeriod::where('status', Config::get('custom.status.active'))
-                                    ->where('statement_id', $update['statement_id'])
-                                    ->where('period', $update['period'])
-                                    ->where('id', '!=', $statementPeriod['id'])
-                                    ->first();
-        if ($exsist==null){
-            $statementPeriod->update($update);
-            // create transactions if exsist
-            if (isset($update['transactions'])){
-                foreach ($update['transactions'] AS $key => $value):
-                    $value['period_id'] = $statementPeriod->id;
-                    $this->statementTransactionService->update_statementTransaction($value);
-                endforeach;
-            }
-            // delete transactions if exsist
-            if (isset($update['transactions_to_delete'])){
-                foreach ($update['transactions_to_delete'] AS $key => $value):
-                    $this->statementTransactionService->delete_statementTransaction($value);
-                endforeach;
-            }
-            return new StatementPeriodResource($statementPeriod);
-        }
-        return response()->json([
-            'error' => 'Data exsist.'
-        ], 409);
-    }
-
-    public function delete_statementPeriod(StatementPeriod $statementPeriod)
-    {
-        $statementPeriod->update(['status' => Config::get('custom.status.delete')]);
+        StatementPeriod::where('statement_id', $statement_id)->update(['status' => Config::get('custom.status.delete')]);
     }
 }
