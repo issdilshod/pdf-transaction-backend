@@ -4,6 +4,9 @@ namespace App\Services\Statements;
 
 use App\Http\Resources\Statements\StatementResource;
 use App\Models\Statements\Statement;
+use App\Models\Statements\StatementPeriod;
+use App\Models\Statements\StatementTransaction;
+use App\Models\Statements\StatementTransactionDescription;
 use Illuminate\Support\Facades\Config;
 
 class StatementService {
@@ -54,6 +57,31 @@ class StatementService {
     public function delete_statement(Statement $statement)
     {
         $statement->update(['status' => Config::get('custom.status.delete')]);
+
+        // periods
+        $periods = StatementPeriod::where('status', Config::get('custom.status.active'))
+                                    ->where('statement_id', $statement->id)
+                                    ->get();
+        StatementPeriod::where('status', Config::get('custom.status.active'))
+                        ->where('statement_id', $statement->id)
+                        ->update(['status' => Config::get('custom.status.delete')]);
+        foreach ($periods AS $key => $value):
+            $transactions = StatementTransaction::where('status', Config::get('custom.status.active'))
+                                                    ->where('period_id', $value['id'])
+                                                    ->get();
+            StatementTransaction::where('status', Config::get('custom.status.active'))
+                                ->where('period_id', $value['id'])
+                                ->update(['status' => Config::get('custom.status.delete')]);
+            // transactions
+            foreach ($transactions AS $key1 => $value1):
+
+                // descriptions
+                StatementTransactionDescription::where('status', Config::get('custom.status.active'))
+                                                ->where('transaction_id', $value1['id'])
+                                                ->update(['status' => Config::get('custom.status.delete')]);
+            endforeach;
+
+        endforeach;
     }
 
     public function get_count()
