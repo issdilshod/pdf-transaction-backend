@@ -34,6 +34,8 @@ class StatementPeriod extends Model
     public function transactions(): HasOneOrMany
     {
         return $this->hasMany(StatementTransaction::class, 'period_id')
+                        ->orderBy('type_id', 'ASC')
+                        ->orderBy('date', 'ASC')
                         ->where('status', Config::get('custom.status.active'));
     }
 }
