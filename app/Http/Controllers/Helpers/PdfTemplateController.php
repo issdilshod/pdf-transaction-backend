@@ -3,26 +3,26 @@
 namespace App\Http\Controllers\Helpers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Helpers\PdfImage;
-use App\Services\Helpers\PdfImageService;
+use App\Models\Helpers\PdfTemplate;
+use App\Services\Helpers\PdfTemplateService;
 use Illuminate\Http\Request;
 
-class PdfImageController extends Controller
+class PdfTemplateController extends Controller
 {
-
-    private $pdfImageService;
+    
+    private $pdfTemplateService;
 
     public function __construct()
     {
-        $this->pdfImageService = new PdfImageService();
+        $this->pdfTemplateService = new PdfTemplateService();
     }
-    
+
     /**     @OA\GET(
-      *         path="/api/pdf-image",
-      *         operationId="get_pdf_images",
+      *         path="/api/pdf-template",
+      *         operationId="get_pdf_templates",
       *         tags={"Helpers"},
-      *         summary="Get pdf images",
-      *         description="Get pdf images",
+      *         summary="Get pdf templates",
+      *         description="Get pdf templates",
       *             @OA\Response(response=200, description="Successfully"),
       *             @OA\Response(response=400, description="Bad request"),
       *             @OA\Response(response=401, description="Not Authorized"),
@@ -31,24 +31,26 @@ class PdfImageController extends Controller
       */
     public function index()
     {
-        $pdfImage = $this->pdfImageService->all();
-        return $pdfImage;
+        $pdfTemplate = $this->pdfTemplateService->all();
+        return $pdfTemplate;
     }
-
+  
     /**     @OA\POST(
-      *         path="/api/pdf-image",
-      *         operationId="create_pdf_image",
+      *         path="/api/pdf-template",
+      *         operationId="create_pdf_template",
       *         tags={"Helpers"},
-      *         summary="Create pdf image",
-      *         description="Create pdf image",
+      *         summary="Create pdf template",
+      *         description="Create pdf template",
       *             @OA\RequestBody(
       *                 @OA\JsonContent(),
       *                 @OA\MediaType(
       *                     mediaType="multipart/form-data",
       *                     @OA\Schema(
       *                         type="object",
-      *                         required={"period"},
+      *                         required={"period", "name", "file"},
       *                         @OA\Property(property="period", type="date"),
+      *                         @OA\Property(property="name", type="date"),
+      *                         @OA\Property(property="file", type="binary"),
       *                     ),
       *                 ),
       *             ),
@@ -62,23 +64,25 @@ class PdfImageController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'period' => 'required'
+            'period' => 'required',
+            'name' => 'required',
+            'file' => 'required'
         ]);
 
-        $response = $this->pdfImageService->create($validated);
+        $response = $this->pdfTemplateService->create($validated);
         return $response;
     }
-
+  
     /**     @OA\GET(
-      *         path="/api/pdf-image/{id}",
-      *         operationId="get_pdf_image",
+      *         path="/api/pdf-template/{id}",
+      *         operationId="get_pdf_template",
       *         tags={"Helpers"},
-      *         summary="Get pdf image",
-      *         description="Get pdf image",
+      *         summary="Get pdf template",
+      *         description="Get pdf template",
       *             @OA\Parameter(
       *                 name="id",
       *                 in="path",
-      *                 description="pdf image id",
+      *                 description="pdf template id",
       *                 @OA\Schema(type="integer"),
       *                 required=true
       *             ),
@@ -88,22 +92,22 @@ class PdfImageController extends Controller
       *             @OA\Response(response=404, description="Resource Not Found"),
       *     )
       */
-    public function show(PdfImage $pdfImage)
+    public function show(PdfTemplate $pdfTemplate)
     {
-        $pdfImage = $this->pdfImageService->get($pdfImage);
-        return $pdfImage;
+        $pdfTemplate = $this->pdfTemplateService->get($pdfTemplate);
+        return $pdfTemplate;
     }
-
+  
     /**     @OA\PUT(
-      *         path="/api/pdf-image/{id}",
-      *         operationId="update_pdf_image",
+      *         path="/api/pdf-template/{id}",
+      *         operationId="update_pdf_template",
       *         tags={"Helpers"},
-      *         summary="Update pdf image",
-      *         description="Update pdf image",
+      *         summary="Update pdf template",
+      *         description="Update pdf template",
       *             @OA\Parameter(
       *                 name="id",
       *                 in="path",
-      *                 description="pdf image id",
+      *                 description="pdf template id",
       *                 @OA\Schema(type="integer"),
       *                 required=true
       *             ),
@@ -115,6 +119,8 @@ class PdfImageController extends Controller
       *                         type="object",
       *                         required={},
       *                         @OA\Property(property="period", type="text"),
+      *                         @OA\Property(property="name", type="text"),
+      *                         @OA\Property(property="file", type="binary"),
       *                     ),
       *                 ),
       *             ),
@@ -124,26 +130,28 @@ class PdfImageController extends Controller
       *             @OA\Response(response=404, description="Resource Not Found"),
       *     )
       */
-    public function update(Request $request, PdfImage $pdfImage)
+    public function update(Request $request, PdfTemplate $pdfTemplate)
     {
         $validated = $request->validate([
-            'period' => ''
+            'period' => '',
+            'name' => '',
+            'file' => ''
         ]);
 
-        $response = $this->pdfImageService->update($validated, $pdfImage);
+        $response = $this->pdfTemplateService->update($validated, $pdfTemplate);
         return $response;
     }
-
+  
     /**     @OA\DELETE(
-      *         path="/api/pdf-image/{id}",
-      *         operationId="delete_pdf_image",
+      *         path="/api/pdf-template/{id}",
+      *         operationId="delete_pdf_template",
       *         tags={"Helpers"},
-      *         summary="Delete pdf image",
-      *         description="Delete pdf image",
+      *         summary="Delete pdf template",
+      *         description="Delete pdf template",
       *             @OA\Parameter(
       *                 name="id",
       *                 in="path",
-      *                 description="pdf image id",
+      *                 description="pdf template id",
       *                 @OA\Schema(type="integer"),
       *                 required=true
       *             ),
@@ -153,8 +161,8 @@ class PdfImageController extends Controller
       *             @OA\Response(response=404, description="Resource Not Found"),
       *     )
       */
-    public function destroy(PdfImage $pdfImage)
+    public function destroy(PdfTemplate $pdfTemplate)
     {
-        $this->pdfImageService->delete($pdfImage);
+        $this->pdfTemplateService->delete($pdfTemplate);
     }
 }

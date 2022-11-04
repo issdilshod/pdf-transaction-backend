@@ -15,9 +15,9 @@ use App\Http\Controllers\Transactions\TransactionPageController;
 use App\Http\Controllers\Transactions\TransactionTypeController;
 use App\Http\Controllers\Account\UserController;
 use App\Http\Controllers\Helpers\PdfImageController;
+use App\Http\Controllers\Helpers\PdfTemplateController;
 use App\Http\Controllers\Statements\PdfContentController;
 use App\Http\Controllers\Statements\StatementController;
-use App\Http\Controllers\Statements\StatementPeriodController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('custom')->group(function() {
@@ -62,6 +62,8 @@ Route::middleware('custom')->group(function() {
     Route::get('api/statement-count', [StatementController::class, 'count']);
 
     Route::resource('api/pdf-image', PdfImageController::class);
+
+    Route::resource('api/pdf-template', PdfTemplateController::class);
 
     Route::post('api/hex2ascii', [PdfContentController::class, 'hex2ascii']);
     Route::post('api/hex2ascii/period', [PdfContentController::class, 'hex2ascii_period']);

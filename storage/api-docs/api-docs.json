@@ -976,8 +976,8 @@
                 "tags": [
                     "Helpers"
                 ],
-                "summary": "Get pdf image",
-                "description": "Get pdf image",
+                "summary": "Get pdf images",
+                "description": "Get pdf images",
                 "operationId": "get_pdf_images",
                 "responses": {
                     "200": {
@@ -1138,6 +1138,210 @@
                         "name": "id",
                         "in": "path",
                         "description": "pdf image id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/pdf-template": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get pdf templates",
+                "description": "Get pdf templates",
+                "operationId": "get_pdf_templates",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Create pdf template",
+                "description": "Create pdf template",
+                "operationId": "create_pdf_template",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "period",
+                                    "name",
+                                    "file"
+                                ],
+                                "properties": {
+                                    "period": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "file": {
+                                        "type": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/pdf-template/{id}": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get pdf template",
+                "description": "Get pdf template",
+                "operationId": "get_pdf_template",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "pdf template id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Update pdf template",
+                "description": "Update pdf template",
+                "operationId": "update_pdf_template",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "pdf template id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "period": {
+                                        "type": "text"
+                                    },
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "file": {
+                                        "type": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Delete pdf template",
+                "description": "Delete pdf template",
+                "operationId": "delete_pdf_template",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "pdf template id",
                         "required": true,
                         "schema": {
                             "type": "integer"

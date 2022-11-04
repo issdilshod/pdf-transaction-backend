@@ -13,8 +13,8 @@ use App\Http\Controllers\Transactions\TransactionPageController;
 use App\Http\Controllers\Transactions\TransactionTypeController;
 use App\Http\Controllers\Account\UserController;
 use App\Http\Controllers\Helpers\PdfImageController;
+use App\Http\Controllers\Helpers\PdfTemplateController;
 use App\Http\Controllers\Statements\StatementController;
-use App\Http\Controllers\Statements\StatementPeriodController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('api/user', [UserController::class, 'index']);
@@ -100,3 +100,9 @@ Route::post('api/pdf-image', [PdfImageController::class, 'store']);
 Route::get('api/pdf-image/{id}', [PdfImageController::class, 'show']);
 Route::put('api/pdf-image/{id}', [PdfImageController::class, 'update']);
 Route::delete('api/pdf-image/{id}', [PdfImageController::class, 'destroy']);
+
+Route::get('api/pdf-template', [PdfTemplateController::class, 'index']);
+Route::post('api/pdf-template', [PdfTemplateController::class, 'store']);
+Route::get('api/pdf-template/{id}', [PdfTemplateController::class, 'show']);
+Route::put('api/pdf-template/{id}', [PdfTemplateController::class, 'update']);
+Route::delete('api/pdf-template/{id}', [PdfTemplateController::class, 'destroy']);
