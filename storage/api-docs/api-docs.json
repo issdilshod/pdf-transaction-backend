@@ -971,6 +971,195 @@
                 }
             }
         },
+        "/api/pdf-image": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get pdf image",
+                "description": "Get pdf image",
+                "operationId": "get_pdf_images",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Create pdf image",
+                "description": "Create pdf image",
+                "operationId": "create_pdf_image",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "period"
+                                ],
+                                "properties": {
+                                    "period": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/api/pdf-image/{id}": {
+            "get": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Get pdf image",
+                "description": "Get pdf image",
+                "operationId": "get_pdf_image",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "pdf image id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Update pdf image",
+                "description": "Update pdf image",
+                "operationId": "update_pdf_image",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "pdf image id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "period": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Helpers"
+                ],
+                "summary": "Delete pdf image",
+                "description": "Delete pdf image",
+                "operationId": "delete_pdf_image",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "pdf image id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/range": {
             "get": {
                 "tags": [
