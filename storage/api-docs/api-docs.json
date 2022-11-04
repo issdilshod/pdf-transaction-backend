@@ -3064,6 +3064,30 @@
                 }
             }
         },
+        "/api/statement-last/{company_id}/{last_period}": {
+            "get": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Get statements last",
+                "description": "Get statements last",
+                "operationId": "get_statemensLast",
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/transaction-category": {
             "get": {
                 "tags": [

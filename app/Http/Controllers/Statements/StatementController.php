@@ -182,4 +182,23 @@ class StatementController extends Controller
         $statements_count = $this->statementService->get_count();
         return $statements_count;
     }
+
+    /**     @OA\GET(
+      *         path="/api/statement-last/{company_id}/{last_period}",
+      *         operationId="get_statemensLast",
+      *         tags={"Partners"},
+      *         summary="Get statements last",
+      *         description="Get statements last",
+      *             @OA\Response(response=200, description="Successfully"),
+      *             @OA\Response(response=400, description="Bad request"),
+      *             @OA\Response(response=401, description="Not Authorized"),
+      *             @OA\Response(response=404, description="Resource Not Found"),
+      *     )
+      */
+    public function statement_last($company_id, $last_period)
+    {
+        $statements_last = $this->statementService->get_last($company_id, $last_period);
+        return $statements_last;
+    }
+
 }

@@ -91,6 +91,21 @@ class StatementService {
         return count($statements);
     }
 
+    public function get_last($company_id, $last_period)
+    {
+        $last = StatementPeriod::select('ending_balance')
+                                ->join('statements', 'statements.id', '=', 'statement_periods.statement_id')
+                                ->where('statement_periods.period', $last_period)
+                                ->where('statements.company_id', $company_id)
+                                ->first();
+        if ($last!=null){
+            return $last;
+        }
+        return response()->json([
+            'msg' => 'Not Found.'
+        ], 404);
+    }
+
     public function trash_statement($id)
     {
         //

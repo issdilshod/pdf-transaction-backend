@@ -60,6 +60,7 @@ Route::middleware('custom')->group(function() {
 
     Route::resource('api/statement', StatementController::class);
     Route::get('api/statement-count', [StatementController::class, 'count']);
+    Route::get('api/statement-last/{company_id}/{last_period}', [StatementController::class, 'statement_last']);
 
     Route::resource('api/pdf-image', PdfImageController::class);
 
