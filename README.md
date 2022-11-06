@@ -67,11 +67,15 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Fast Start
 
-1) Migrate the database
+1) Generate App Key
+
+### `php artisan key:generate`
+
+2) Migrate the database
 
 ### `php artisan migrate`
 
-2) Start the first settings of app
+3) Start the first settings of app
 
 ### `php artisan db:seed --class=UserSeeder`
 
