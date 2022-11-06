@@ -16,6 +16,7 @@ class PdfTemplateResource extends JsonResource
     {
         return [
             'id'=> $this->id,
+            'period' => $this->period,
             'name' => $this->name,
             'file_path' => $this->file_path,
             'file_name' => $this->file_name

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Helpers\PdfTemplate;
 use App\Services\Helpers\PdfTemplateService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PdfTemplateController extends Controller
 {
@@ -65,9 +66,23 @@ class PdfTemplateController extends Controller
     {
         $validated = $request->validate([
             'period' => 'required',
-            'name' => 'required',
-            'file' => 'required'
+            'name' => 'required'
         ]);
+
+        // check if file exists
+        if (!$request->has('file')){
+            return response()->json([
+                'msg' => 'Choose Template file'
+            ], 422);
+        }
+
+        $templateFile = $request->file('file');
+        $fileName = Str::uuid()->toString() . '.' . $templateFile->getClientOriginalExtension();
+        $templateFile->move('statements/templates', $fileName);
+
+        // get file data
+        $validated['file_path'] = $fileName;
+        $validated['file_name'] = $templateFile->getClientOriginalName();
 
         $response = $this->pdfTemplateService->create($validated);
         return $response;
@@ -134,9 +149,18 @@ class PdfTemplateController extends Controller
     {
         $validated = $request->validate([
             'period' => '',
-            'name' => '',
-            'file' => ''
+            'name' => ''
         ]);
+
+        if ($request->has('file')){
+            $templateFile = $request->file('file');
+            $fileName = Str::uuid()->toString() . '.' . $templateFile->getClientOriginalExtension();
+            $templateFile->move('statements/templates', $fileName);
+
+            // get file data
+            $validated['file_path'] = $fileName;
+            $validated['file_name'] = $templateFile->getClientOriginalName();
+        }
 
         $response = $this->pdfTemplateService->update($validated, $pdfTemplate);
         return $response;
