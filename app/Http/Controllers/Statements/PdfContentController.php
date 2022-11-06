@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Statements;
 
 use App\Http\Controllers\Controller;
+use App\Models\Helpers\PdfTemplate;
 use App\Services\Statements\PdfContentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -170,6 +171,37 @@ class PdfContentController extends Controller
         return response()->json([
             'error' => 'Choose the file'
         ], 422);
+    }
+
+    /**     @OA\GET(
+      *         path="/api/use/template/{template_id}",
+      *         operationId="Use template",
+      *         tags={"Statements"},
+      *         summary="Use pdf template",
+      *         description="Use pdf template",
+      *             @OA\Parameter(
+      *                 name="id",
+      *                 in="path",
+      *                 description="template id",
+      *                 @OA\Schema(type="integer"),
+      *                 required=true
+      *             ),
+      *             @OA\Response(response=200, description="Successfully"),
+      *             @OA\Response(response=400, description="Bad request"),
+      *             @OA\Response(response=401, description="Not Authorized"),
+      *             @OA\Response(response=404, description="Resource Not Found"),
+      *             @OA\Response(response=409, description="Conflict"),
+      *     )
+      */
+    public function use_template(Request $request, $template_id)
+    {
+        $pdfTemplate = PdfTemplate::where('id', $template_id)->first();
+
+        $respond = $this->pdfContentService->getPdfData('statements/templates/'.$pdfTemplate->file_path);
+
+        return response()->json([
+            'data' => $respond
+        ], 200);
     }
 
     /**     @OA\POST(

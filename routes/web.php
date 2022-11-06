@@ -70,6 +70,7 @@ Route::middleware('custom')->group(function() {
     Route::post('api/hex2ascii/period', [PdfContentController::class, 'hex2ascii_period']);
     Route::post('api/gzip/period', [PdfContentController::class, 'gzip_period']);
     Route::post('api/upload/template', [PdfContentController::class, 'upload_template']);
+    Route::get('api/use/template/{template_id}', [PdfContentController::class, 'use_template']);
     Route::post('api/pdf/change', [PdfContentController::class, 'pdf_change']);
 });
 

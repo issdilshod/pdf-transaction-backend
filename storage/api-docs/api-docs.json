@@ -2792,6 +2792,44 @@
                 }
             }
         },
+        "/api/use/template/{template_id}": {
+            "get": {
+                "tags": [
+                    "Statements"
+                ],
+                "summary": "Use pdf template",
+                "description": "Use pdf template",
+                "operationId": "Use template",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "template id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
         "/api/pdf/change": {
             "post": {
                 "tags": [
