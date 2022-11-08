@@ -69,7 +69,7 @@ class CompanyController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'address.address_line1' => 'required',
-            'address.address_line2' => 'required',
+            'address.address_line2' => '',
             'address.state_id' => 'required',
             'address.city' => 'required',
             'address.postal' => 'required',
@@ -144,7 +144,7 @@ class CompanyController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'address.address_line1' => 'required',
-            'address.address_line2' => 'required',
+            'address.address_line2' => '',
             'address.state_id' => 'required',
             'address.city' => 'required',
             'address.postal' => 'required',
