@@ -25,7 +25,7 @@ class SenderService {
     public function create_sender($sender)
     {
         $exsist = Sender::where('status', Config::get('custom.status.active'))
-                        ->where('it_id', $sender['it_id'])
+                        ->where('name', $sender['name'])
                         ->first();
         if ($exsist==null){
             $created = Sender::create($sender);
@@ -39,7 +39,7 @@ class SenderService {
     public function update_sender($update, Sender $sender)
     {
         $exsist = Sender::where('status', Config::get('custom.status.active'))
-                        ->where('it_id', $update['it_id'])
+                        ->where('name', $update['name'])
                         ->where('id', '!=', $sender->id)
                         ->first();
         if ($exsist==null){
