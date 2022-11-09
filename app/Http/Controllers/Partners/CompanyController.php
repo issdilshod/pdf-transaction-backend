@@ -68,11 +68,11 @@ class CompanyController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'address.address_line1' => 'required',
+            'address.address_line1' => '',
             'address.address_line2' => '',
-            'address.state_id' => 'required',
-            'address.city' => 'required',
-            'address.postal' => 'required',
+            'address.state_id' => '',
+            'address.city' => '',
+            'address.postal' => '',
         ]);
 
         $response = $this->companyService->create_company($validated);
@@ -143,11 +143,11 @@ class CompanyController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'address.address_line1' => 'required',
+            'address.address_line1' => '',
             'address.address_line2' => '',
-            'address.state_id' => 'required',
-            'address.city' => 'required',
-            'address.postal' => 'required',
+            'address.state_id' => '',
+            'address.city' => '',
+            'address.postal' => '',
         ]);
 
         $response = $this->companyService->update_company($validated, $company);
