@@ -57,7 +57,15 @@ class CustomerService {
 
     public function delete_customer(Customer $customer)
     {
-        $customer->update(['status' => Config::get('custom.status.delete')]);
+        $customer_use = StatementTransaction::where('status', Config::get('custom.status.active'))
+                                                ->where('customer_id', $customer->id)
+                                                ->first();
+        if ($customer_use!=null){
+            return response()->json([
+                'msg' => 'Customer uses on statement'
+            ], 409);
+        }
+        return $customer->update(['status' => Config::get('custom.status.delete')]);
     }
 
     public function search_customer($search)

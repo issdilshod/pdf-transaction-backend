@@ -155,7 +155,8 @@ class CustomerController extends Controller
       */
     public function destroy(Customer $customer)
     {
-        $this->customerService->delete_customer($customer);
+        $response = $this->customerService->delete_customer($customer);
+        return $response;
     }
 
     /**     @OA\GET(
