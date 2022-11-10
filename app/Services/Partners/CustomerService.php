@@ -65,8 +65,7 @@ class CustomerService {
         $customers = Customer::orderBy('created_at', 'DESC')
                             ->where('status', Config::get('custom.status.active'))
                             ->where('name', 'LIKE', '%' . $search . '%')
-                            ->take(20)
-                            ->get();
+                            ->paginate(20);
 
         $customers = $this->where_use($customers);
 

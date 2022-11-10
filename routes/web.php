@@ -27,17 +27,17 @@ Route::middleware('custom')->group(function() {
     Route::get('api/is_auth', [AccountController::class, 'is_auth']);
 
     Route::resource('api/sender', SenderController::class);
-    Route::get('api/sender/search/{search}', [SenderController::class, 'search']);
+    Route::get('api/sender-search/{search}', [SenderController::class, 'search']);
 
     Route::resource('api/customer', CustomerController::class);
-    Route::get('api/customer/search/{search}', [CustomerController::class, 'search']);
+    Route::get('api/customer-search/{search}', [CustomerController::class, 'search']);
     Route::post('api/customer-import', [CustomerController::class, 'import']);
     Route::get('api/customer-count', [CustomerController::class, 'count']);
 
     Route::get('api/state', [StateController::class, 'index']);
 
     Route::resource('api/company', CompanyController::class);
-    Route::get('api/company/search/{search}', [CompanyController::class, 'search']);
+    Route::get('api/company-search/{search}', [CompanyController::class, 'search']);
     Route::get('api/company-count', [CompanyController::class, 'count']);
 
     Route::resource('api/organization', OrganizationController::class);

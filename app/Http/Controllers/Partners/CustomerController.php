@@ -159,7 +159,7 @@ class CustomerController extends Controller
     }
 
     /**     @OA\GET(
-      *         path="/api/customer/search/{search}",
+      *         path="/api/customer-search/{search}",
       *         operationId="search_customer",
       *         tags={"Partners"},
       *         summary="Search customer",
