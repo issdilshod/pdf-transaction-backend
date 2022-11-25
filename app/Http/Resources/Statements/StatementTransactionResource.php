@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Statements;
 
+use App\Http\Resources\Partners\CustomerResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class StatementTransactionResource extends JsonResource
@@ -20,7 +21,7 @@ class StatementTransactionResource extends JsonResource
             'type_id' => $this->type_id,
             'category_id' => $this->category_id,
             'customer_id' => $this->customer_id,
-            'customer' => $this->customer,
+            'customer' => new CustomerResource($this->customer),
             'sender_id' => $this->sender_id,
             'sender' => $this->sender,
             'date' => $this->date,
