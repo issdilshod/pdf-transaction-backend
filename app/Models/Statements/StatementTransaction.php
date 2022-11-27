@@ -58,16 +58,9 @@ class StatementTransaction extends Model
                         ->where('status', Config::get('custom.status.active'));
     }
 
-    public function customer()
+    public function customer(): BelongsTo
     {
-        $customer = $this->belongsTo(Customer::class, 'customer_id')->first();
-
-        if ($customer!=null){
-            $uses = $this->customerService->where_use_query($customer->toArray());
-            $customer->use = $this->customerService->where_use_set($uses);
-        }
-
-        return $customer;
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
     public function sender(): BelongsTo
