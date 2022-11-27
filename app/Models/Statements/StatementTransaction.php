@@ -57,11 +57,10 @@ class StatementTransaction extends Model
                         ->where('status', Config::get('custom.status.active'));
     }
 
-    public function customer(): BelongsTo
+    public function customer()
     {
-        $customer = $this->belongsTo(Customer::class, 'customer_id')
-                        ->where('status', Config::get('custom.status.active'))
-                        ->first();
+        $customer = StatementTransaction::leftJoin('customers', 'customers.id', '=', 'statement_transactions.customer_id')
+                                        ->first();
 
         $uses = $this->customerService->where_use_query($customer->toArray());
         $customer->use = $this->customerService->where_use_set($uses);
