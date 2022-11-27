@@ -2,6 +2,7 @@
 
 namespace App\Models\Statements;
 
+use App\Helpers\LogHelper;
 use App\Models\Partners\Customer;
 use App\Models\Partners\Sender;
 use App\Models\Transactions\TransactionCategory;
@@ -57,10 +58,12 @@ class StatementTransaction extends Model
                         ->where('status', Config::get('custom.status.active'));
     }
 
-    public function customer()
+    public function customer(): BelongsTo
     {
-        $customer = StatementTransaction::leftJoin('customers', 'customers.id', '=', 'statement_transactions.customer_id')
-                                        ->first();
+        $customer = $this->belongsTo(Customer::class, 'customer_id');
+
+        $log = new LogHelper();
+        $log->to_file($customer);
 
         $uses = $this->customerService->where_use_query($customer->toArray());
         $customer->use = $this->customerService->where_use_set($uses);
