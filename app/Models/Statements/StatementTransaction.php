@@ -60,7 +60,8 @@ class StatementTransaction extends Model
     public function customer(): BelongsTo
     {
         $customer = $this->belongsTo(Customer::class, 'customer_id')
-                        ->where('status', Config::get('custom.status.active'));
+                        ->where('status', Config::get('custom.status.active'))
+                        ->first();
 
         $uses = $this->customerService->where_use_query($customer->toArray());
         $customer->use = $this->customerService->where_use_set($uses);
