@@ -6,6 +6,7 @@ use App\Models\Partners\Customer;
 use App\Models\Partners\Sender;
 use App\Models\Transactions\TransactionCategory;
 use App\Models\Transactions\TransactionType;
+use App\Services\Partners\CustomerService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,6 +16,13 @@ use Illuminate\Support\Facades\Config;
 class StatementTransaction extends Model
 {
     use HasFactory;
+
+    private $customerService;
+
+    public function __construct()
+    {
+        $this->customerService = new CustomerService();
+    }
 
     protected $fillable = [
         'period_id',
@@ -51,8 +59,13 @@ class StatementTransaction extends Model
 
     public function customer(): BelongsTo
     {
-        return $this->belongsTo(Customer::class, 'customer_id')
+        $customer = $this->belongsTo(Customer::class, 'customer_id')
                         ->where('status', Config::get('custom.status.active'));
+
+        $uses = $this->customerService->where_use_query($customer);
+        $customer['use'] = $this->customerService->where_use_set($uses);
+
+        return $customer;
     }
 
     public function sender(): BelongsTo
