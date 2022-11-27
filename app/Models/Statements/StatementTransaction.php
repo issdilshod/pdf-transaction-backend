@@ -62,11 +62,10 @@ class StatementTransaction extends Model
     {
         $customer = $this->belongsTo(Customer::class, 'customer_id')->first();
 
-        $log = new LogHelper();
-        $log->to_file($customer);
-
-        $uses = $this->customerService->where_use_query($customer->toArray());
-        $customer->use = $this->customerService->where_use_set($uses);
+        if ($customer!=null){
+            $uses = $this->customerService->where_use_query($customer->toArray());
+            $customer->use = $this->customerService->where_use_set($uses);
+        }
 
         return $customer;
     }
