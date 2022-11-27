@@ -60,7 +60,7 @@ class StatementTransaction extends Model
 
     public function customer(): BelongsTo
     {
-        $customer = $this->belongsTo(Customer::class, 'customer_id');
+        $customer = $this->belongsTo(Customer::class, 'customer_id')->first();
 
         $log = new LogHelper();
         $log->to_file($customer);
